@@ -1,0 +1,423 @@
+<!DOCTYPE html>
+<!-- saved from url=(0098)file:///C:/Users/netox/Desktop/Kassi%20SIte/Site%20KASSI%202%20testes%20variante%20tt.html#contato -->
+<html lang="pt-br"><head><meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+    
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Kassiane Lins – Psicóloga Clínica</title>
+    
+<link rel="stylesheet" href="css/css2.css">
+<link rel="stylesheet" href="css/all.min.css">
+
+    
+    <style>
+        :root {
+            /* Paleta de cores do primeiro código */
+            --cor-primaria: #a3d2ca;
+            --cor-secundaria: #f7fff7;
+            --cor-fundo: #fafafa;
+            --cor-texto: #333;
+            --cor-titulo: #5eaaa8;
+            --cor-hover: #4b9e9d;
+            --cor-interna: #ffffff;
+            --cor-sombra: rgba(0, 0, 0, 0.05);
+        }
+
+        body {
+            font-family: 'Poppins', sans-serif;
+            background-color: var(--cor-fundo);
+            color: var(--cor-texto);
+            line-height: 1.8;
+            margin: 0;
+            padding: 0;
+            scroll-behavior: smooth;
+        }
+
+        /* --- Header --- */
+        .header {
+            text-align: center;
+            padding: 40px 20px 20px;
+            background-color: var(--cor-secundaria);
+            position: relative;
+            transition: background-color 0.3s ease, padding 0.3s ease;
+        }
+
+        .header.sticky {
+            position: fixed;
+            top: 0;
+            width: 100%;
+            padding: 15px 20px;
+            background-color: var(--cor-hover);
+            z-index: 1000;
+            box-shadow: 0 2px 5px var(--cor-sombra);
+        }
+
+        .header .logo {
+            margin-bottom: 15px;
+            transition: width 0.3s ease, height 0.3s ease;
+        }
+
+        .header.sticky .logo {
+            width: 80px;
+            height: 80px;
+            margin-bottom: 0;
+        }
+        
+        .header h1 {
+            font-family: 'Playfair Display', serif;
+            font-size: 36px;
+            font-weight: 700;
+            color: var(--cor-titulo);
+            margin: 0;
+            transition: font-size 0.3s ease, color 0.3s ease;
+        }
+
+        .header p {
+            font-size: 18px;
+            font-weight: 400;
+            color: var(--cor-texto);
+            margin-top: 5px;
+            transition: opacity 0.3s ease;
+        }
+        
+        .header.sticky h1, .header.sticky p {
+            color: var(--cor-interna);
+        }
+        
+        .header.sticky h1 {
+            font-size: 24px;
+        }
+
+        .header.sticky p {
+            opacity: 0;
+            display: none;
+        }
+
+        .header .cta-button {
+            display: none;
+        }
+
+        .header.sticky .cta-button {
+            display: inline-block;
+            margin-top: 0;
+            padding: 8px 16px;
+            background-color: var(--cor-primaria);
+            color: var(--cor-interna);
+            font-size: 16px;
+            transition: background-color 0.3s ease;
+        }
+
+        .header.sticky .logo, .header.sticky h1, .header.sticky .cta-button {
+            display: inline-block;
+            vertical-align: middle;
+        }
+
+        /* --- SLIDE --- */
+        .slideshow-container {
+            width: 100%;
+            position: relative;
+            margin: 0 auto;
+            overflow: hidden;
+        }
+
+        .mySlides {
+            display: none;
+            position: relative;
+        }
+
+        .mySlides img {
+            width: 100%;
+            height: 450px;
+            object-fit: cover;
+            display: block;
+        }
+
+        .text {
+            position: absolute;
+            bottom: 20%;
+            left: 50%;
+            transform: translateX(-50%);
+            color: white;
+            font-size: 28px;
+            font-family: 'Playfair Display', serif;
+            text-shadow: 0px 2px 5px rgba(0,0,0,0.7);
+            text-align: center;
+            max-width: 90%;
+            line-height: 1.4;
+        }
+
+        .dot-container {
+            text-align: center;
+            padding: 15px;
+            background: var(--cor-fundo);
+        }
+
+        .dot {
+            cursor: pointer;
+            height: 12px;
+            width: 12px;
+            margin: 0 4px;
+            background-color: #bbb;
+            border-radius: 50%;
+            display: inline-block;
+            transition: background-color 0.6s ease;
+        }
+
+        .active, .dot:hover {
+            background-color: var(--cor-primaria);
+        }
+
+        /* --- Seções (sem caixa, com linha divisória) --- */
+        section {
+            max-width: 900px;
+            margin: 40px auto;
+            padding: 30px 0;
+        }
+        
+        /* Adiciona a linha divisória apenas na seção 'Sobre Mim' */
+        #sobre {
+            border-bottom: 2px solid var(--cor-primaria);
+        }
+
+        section h2 {
+            font-family: 'Playfair Display', serif;
+            font-size: 32px;
+            font-weight: 700;
+            color: var(--cor-titulo);
+            margin-bottom: 20px;
+            border-bottom: 2px solid var(--cor-primaria);
+            padding-bottom: 10px;
+            text-align: center;
+        }
+
+        .section-sobre-content {
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            text-align: center;
+            gap: 20px;
+            padding: 0 30px;
+        }
+
+        .section-sobre-text {
+            flex: 1;
+            text-align: left;
+        }
+        
+        .section-sobre-image {
+            text-align: center;
+        }
+
+        .profile-img {
+            border-radius: 12px;
+            border: 3px solid var(--cor-primaria);
+            box-shadow: 0 4px 8px var(--cor-sombra);
+            max-width: 100%;
+            height: auto;
+        }
+
+        /* Botão */
+        .cta-button {
+            display: inline-block;
+            margin-top: 20px;
+            padding: 12px 24px;
+            background-color: var(--cor-primaria);
+            color: var(--cor-interna);
+            text-decoration: none;
+            border-radius: 8px;
+            font-weight: 600;
+            font-size: 18px;
+            transition: background-color 0.3s ease;
+        }
+
+        .cta-button:hover {
+            background-color: var(--cor-hover);
+        }
+
+        /* Lista de Serviços e Contato */
+        ul {
+            list-style: none;
+            padding: 0;
+            display: inline-block;
+            text-align: left;
+        }
+
+        ul li {
+            margin-bottom: 15px;
+            font-size: 17px;
+        }
+
+        ul li i {
+            margin-right: 10px;
+            color: var(--cor-primaria);
+        }
+
+        /* --- Footer (agora fixo e menor) --- */
+        footer {
+            text-align: center;
+            padding: 12px;
+            background-color: var(--cor-primaria);
+            color: var(--cor-texto);
+            box-shadow: 0 -2px 5px var(--cor-sombra);
+            position: fixed;
+            bottom: 0;
+            width: 100%;
+            z-index: 999;
+        }
+
+        footer p {
+            font-size: 14px;
+            margin: 0;
+        }
+
+        /* Responsividade */
+        @media (min-width: 768px) {
+            .section-sobre-content {
+                flex-direction: row;
+                text-align: left;
+            }
+
+            .section-sobre-image {
+                order: 2;
+                padding-left: 30px;
+            }
+
+            .section-sobre-text {
+                order: 1;
+            }
+        }
+        
+        @media (max-width: 767px) {
+            .header h1 {
+                font-size: 28px;
+            }
+            .header p {
+                font-size: 16px;
+            }
+            section {
+                margin: 30px 15px;
+                padding: 20px;
+            }
+            section h2 {
+                font-size: 24px;
+            }
+        }
+    </style>
+</head>
+<body>
+
+    <div class="header sticky" id="header">
+        <img src="imagens/logopsi3.png" alt="Logo Kassiane Lins Psicóloga" width="125" height="125" class="logo"> 
+        <h1>Kassiane Lins dos Santos</h1>
+        <p>Psicóloga Clínica - CRP 15/6551</p>
+        <a href="#contato" class="cta-button">Vamos Conversar</a>
+    </div>
+
+    <div class="slideshow-container">
+        <div class="mySlides" style="display: none;">
+            <img src="imagens/485-1200x450.jpg" alt="Imagem 1">
+            <div class="text">Empatia, acolhimento e cuidado para sua saúde mental</div>
+        </div>
+        <div class="mySlides" style="display: block;">
+            <img src="imagens/615-1200x450.jpg" alt="Imagem 2">
+            <div class="text">Atendimento individualizado para adultos, estudantes e online</div>
+        </div>
+        <div class="mySlides" style="display: none;">
+            <img src="imagens/260-1200x450.jpg" alt="Imagem 3">
+            <div class="text">Você não está sozinha(o) nessa caminhada</div>
+        </div>
+    </div>
+
+    <div class="dot-container">
+        <span class="dot" onclick="currentSlide(1)"></span> 
+        <span class="dot active" onclick="currentSlide(2)"></span> 
+        <span class="dot" onclick="currentSlide(3)"></span> 
+    </div>
+
+    <section id="sobre">
+        <h2>Sobre Mim</h2>
+        <div class="section-sobre-content">
+            <div class="section-sobre-text">
+                <p>Sou psicóloga formada pelo Centro Universitário de Maceió (2021), com capacitação em Saúde Mental pela FAVENI e atualmente pós-graduanda em Psicologia Clínica pela PUC-RS. Minha prática, fundamentada na Psicanálise, vem sendo construída desde os estágios finais da graduação e segue em constante aprofundamento.</p>
+                <p>Dedico-me ao atendimento clínico de adultos, oferecendo um espaço de escuta atenta e acolhedora ao sofrimento psíquico em seus diferentes contextos. Acredito que nenhum sofrimento é pequeno, grave ou difícil demais para não ser ouvido. Cada sujeito traz consigo uma história única, que merece atenção e cuidado, e é nesse espaço que procuro caminhar junto a ele, respeitando sua singularidade. </p>
+                <p>Entendo o processo terapêutico como uma oportunidade de reflexão, transformação e autoconhecimento, possibilitando a cada sujeito ressignificar suas vivências e encontrar novos caminhos para viver com mais equilíbrio e sentido.</p>
+            </div>
+            <div class="section-sobre-image">
+                <img src="imagens/Kassi perfil.jpeg" alt="Perfil de Kassiane Lins" width="250" height="300" class="profile-img"> 
+            </div>
+        </div>
+    </section>
+
+    <section id="abordagem" style="text-align: center;">
+        <h2>Minha Abordagem</h2>
+        <p>Trabalho com a **abordagem humanista**, que valoriza o indivíduo como um ser único e com potencial para o crescimento. O foco da terapia é no presente, no aqui e agora, e na construção de uma relação terapêutica de confiança mútua. Através do diálogo e da reflexão, vamos juntos encontrar caminhos para que você possa desenvolver sua autonomia e se reconectar com seus próprios recursos internos, descobrindo o seu melhor caminho.</p>
+    </section>
+
+    <section id="servicos" style="text-align: center;">
+        <h2>Serviços</h2>
+        <ul>
+            <li><i class="fas fa-check-circle"></i> Sessões online</li>
+            <li><i class="fas fa-check-circle"></i> Psicoterapia individual para adultos</li>
+            <li><i class="fas fa-check-circle"></i> Orientação para estudantes universitários</li>
+        </ul>
+    </section>
+
+    <section id="contato" style="text-align: center;" syle="margin-top: 20px; margin-right:">
+        <h2>Contato</h2>
+        <ul>
+            
+            <li><i class="fas fa-envelope"></i> Email: kassianelinspsi@gmail.com </li>
+            <li><i class="fab fa-whatsapp"></i> WhatsApp: (82) 9907-9493</li>
+            <li><i class="fab fa-instagram"></i> Instagram: kassianelinspsi</li>
+        </ul>
+        <img src="imagens/qrcode.jpg" alt="QR CODE do WhatsApp" width="100" style="margin-top: 20px; margin-right: 20px;">
+    </section>
+
+    <footer>
+        <p>"Cuidar da mente é um ato de coragem."</p>
+    </footer>
+
+    <script>
+        // Efeito "Sticky" para o cabeçalho
+        window.onscroll = function() {
+            stickyHeader();
+        };
+
+        var header = document.getElementById("header");
+        var sticky = header.offsetTop;
+
+        function stickyHeader() {
+            if (window.pageYOffset > 50) { 
+                header.classList.add("sticky");
+            } else {
+                header.classList.remove("sticky");
+            }
+        }
+
+        // SLIDE
+        let slideIndex = 0;
+        showSlides();
+
+        function showSlides() {
+            let i;
+            let slides = document.getElementsByClassName("mySlides");
+            let dots = document.getElementsByClassName("dot");
+            for (i = 0; i < slides.length; i++) {
+                slides[i].style.display = "none";  
+            }
+            slideIndex++;
+            if (slideIndex > slides.length) {slideIndex = 1}      
+            for (i = 0; i < dots.length; i++) {
+                dots[i].className = dots[i].className.replace(" active", "");
+            }
+            slides[slideIndex-1].style.display = "block";  
+            dots[slideIndex-1].className += " active";
+            setTimeout(showSlides, 5000); // troca a cada 5 segundos
+        }
+
+        function currentSlide(n) {
+            slideIndex = n-1;
+            showSlides();
+        }
+    </script>
+
+</body></html>
