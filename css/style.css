@@ -21,6 +21,7 @@ body {
     margin: 0;
     padding: 0;
     scroll-behavior: smooth;
+    overflow-x: hidden; /* Garante que a barra de rolagem horizontal não apareça */
 }
 
 .header-placeholder {
@@ -46,6 +47,45 @@ body {
     margin: 0 auto;
 }
 
+/* Container para os botões de idioma */
+.lang-icons-container {
+    position: absolute;
+    top: 20px;
+    right: 20px;
+    display: flex;
+    gap: 10px;
+    z-index: 1001;
+}
+
+/* Estilos dos botões de tradução */
+.lang-icon {
+    background: transparent;
+    border: none;
+    padding: 0;
+    cursor: pointer;
+    transition: transform 0.2s ease, opacity 0.2s ease;
+}
+
+.lang-icon:hover {
+    transform: scale(1.1);
+    opacity: 0.9;
+}
+
+.flag-image-btn {
+    width: auto; /* Deixa a largura automática */
+    height: 18px; /* Reduz a altura para 18px */
+    border-radius: 4px;
+    box-shadow: 0 2px 6px rgba(0,0,0,0.1);
+    border: 1px solid rgba(0,0,0,0.05);
+    transition: transform 0.3s ease;
+}
+
+.lang-icon:hover .flag-image-btn {
+    transform: scale(1.1);
+    opacity: 0.9;
+}
+
+/* --- ESTILOS DO HEADER FIXO --- */
 .header.sticky {
     position: fixed;
     top: 0;
@@ -59,11 +99,16 @@ body {
     backdrop-filter: blur(6px);
     display: flex;
     align-items: center;
-    justify-content: center;
-    flex-wrap: wrap;
+    justify-content: center; /* Centraliza o logo e o título */
     max-width: none;
     margin: 0;
     height: var(--sticky-header-height);
+}
+
+/* Oculta completamente o contêiner de idioma no cabeçalho fixo */
+.header.sticky .lang-icons-container {
+    display: none;
+    visibility: hidden;
 }
 
 .header .logo {
@@ -72,9 +117,9 @@ body {
 }
 
 .header.sticky .logo {
-    width: 72px;
-    height: 72px;
-    margin-bottom: 0;
+    width: 50px;
+    height: 50px;
+    margin: 0 10px 0 0; /* Espaçamento à direita para separar do nome */
 }
 
 .header h1 {
@@ -94,13 +139,10 @@ body {
     transition: opacity 0.3s ease;
 }
 
-.header.sticky h1, .header.sticky p {
-    color: var(--cor-interna);
-}
-
 .header.sticky h1 {
-    font-size: 20px;
-    margin-left: 10px;
+    font-size: 24px;
+    color: var(--cor-interna);
+    margin: 0; /* Garante que não haja margin-left */
 }
 
 .header.sticky p {
@@ -453,6 +495,10 @@ footer p {
         font-size: 16px;
         margin: 0;
     }
+    .header .lang-icons-container {
+        top: 20px;
+        right: 20px;
+    }
 }
 
 /* --- Responsividade --- */
@@ -472,6 +518,9 @@ footer p {
     }
     .header.sticky h1 {
         font-size: 24px;
+        margin: 0;
+        text-align: center;
+        flex-grow: 1;
     }
     .header.sticky .logo {
         width: 50px;
@@ -479,17 +528,15 @@ footer p {
     }
     /* Estilos da seção de Contato */
     #contato ul {
-        /* Centraliza a lista inteira, mas os itens internos se alinham à esquerda */
         align-items: flex-start;
-        max-width: 400px; /* Limita a largura para centralizar em telas maiores */
+        max-width: 400px;
         margin: 0 auto;
     }
     #contato ul li {
-        /* Garante que o ícone e o texto permaneçam alinhados no início da linha */
         justify-content: flex-start;
-        text-align: left; /* Alinha o texto à esquerda */
-        width: 100%; /* Ocupa a largura total para alinhar corretamente */
-        max-width: 300px; /* Evita que a lista fique muito larga em telas grandes */
+        text-align: left;
+        width: 100%;
+        max-width: 300px;
     }
     #contato ul li i {
         margin-right: 12px;
@@ -526,20 +573,21 @@ footer p {
         display: flex;
         flex-direction: row;
         align-items: center;
-        justify-content: flex-start;
+        justify-content: center;
         height: auto;
         padding: 8px 15px;
+        position: fixed;
     }
     .header.sticky .logo {
-        display: block; /* Garante que o logo apareça no cabeçalho fixo */
-        width: 50px; /* Reduz o tamanho do logo */
+        display: block;
+        width: 50px;
         height: 50px;
         margin-right: 10px;
     }
     .header.sticky h1 {
         font-size: 18px;
         margin: 0;
-        text-align: left;
+        text-align: center;
     }
     /* Oculta o botão 'Vamos Conversar' no cabeçalho em telas menores */
     .header.sticky .cta-button {
@@ -547,19 +595,22 @@ footer p {
     }
     /* Estilos da seção de Contato */
     #contato ul {
-        /* Centraliza a lista inteira, mas os itens internos se alinham à esquerda */
         align-items: flex-start;
-        max-width: 400px; /* Limita a largura para centralizar em telas maiores */
+        max-width: 400px;
         margin: 0 auto;
     }
     #contato ul li {
-        /* Garante que o ícone e o texto permaneçam alinhados no início da linha */
         justify-content: flex-start;
-        text-align: left; /* Alinha o texto à esquerda */
-        width: 100%; /* Ocupa a largura total para alinhar corretamente */
-        max-width: 300px; /* Evita que a lista fique muito larga em telas grandes */
+        text-align: left;
+        width: 100%;
+        max-width: 300px;
     }
     #contato ul li i {
         margin-right: 12px;
+    }
+    /* Oculta completamente o contêiner de idioma no cabeçalho fixo */
+    .header.sticky .lang-icons-container {
+        display: none;
+        visibility: hidden;
     }
 }
