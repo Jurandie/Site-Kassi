@@ -380,6 +380,17 @@
             box-shadow: 0 14px 40px rgba(0,0,0,0.18);
         }
 
+        /* Animação para o botão do WhatsApp */
+        .floating-buttons a.whatsapp {
+            animation: pulse-red 2.5s ease-out infinite;
+        }
+
+        @keyframes pulse-red {
+            0% { transform: scale(1); box-shadow: 0 0 0 0 rgba(255,0,0,0.4); }
+            50% { transform: scale(1.06); box-shadow: 0 0 0 12px rgba(255,0,0,0); }
+            100% { transform: scale(1); box-shadow: 0 0 0 0 rgba(255,0,0,0); }
+        }
+        
         @keyframes pulse {
             0% { transform: scale(1); box-shadow: 0 0 0 0 rgba(163,210,202,0.35); }
             50% { transform: scale(1.06); box-shadow: 0 0 0 10px rgba(163,210,202,0); }
@@ -446,10 +457,9 @@
                 margin: 0;
                 text-align: left;
             }
+            /* Oculta o botão 'Vamos Conversar' no cabeçalho em telas menores */
             .header.sticky .cta-button {
-                margin-left: auto;
-                padding: 6px 10px;
-                font-size: 14px;
+                display: none;
             }
         }
         
@@ -467,7 +477,6 @@
         <img src="imagens/logo.png" alt="Logo Kassiane Lins Psicóloga" width="100" height="100" class="logo">
         <h1>Kassiane Lins dos Santos</h1>
         <p>Psicóloga Clínica - CRP 15/6551</p>
-        <a href="https://wa.me/message/DN7GJ7W4BKA2E1" target="_blank" class="cta-button">Vamos Conversar</a>
     </div>
 
     <main>
