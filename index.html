@@ -306,13 +306,24 @@
 
         /* Classe para inserir imagens de bandeira no tamanho de emoji */
         .flag-image {
-            height: 1.2em;        /* altura igual aproximada ao emoji (escala com o texto) */
-            width: auto;         /* mantém proporção da imagem */
+            /* use altura fixa (pixel) para consistência cross-device */
+            height: 18px;
+            width: auto;
             vertical-align: middle;
             margin: 0 6px;
             border-radius: 2px;
             box-shadow: 0 1px 3px rgba(0,0,0,0.08);
             border: 0.5px solid rgba(0,0,0,0.06);
+            display: inline-block;
+            object-fit: contain;
+        }
+
+        /* Fallback emoji quando a imagem não carregar */
+        .flag-emoji-fallback {
+            font-size: 18px;
+            line-height: 1;
+            vertical-align: middle;
+            margin: 0 6px;
             display: inline-block;
         }
 
@@ -425,7 +436,22 @@
             100% { transform: scale(1); box-shadow: 0 0 0 0 rgba(255,0,0,0); }
         }
 
-        /* --- Responsividade --- */
+        /* Ajustes para telas bem pequenas */
+        @media (max-width: 480px) {
+            section {
+                padding: 20px;
+                margin: 20px 12px;
+            }
+            .flag-image {
+                height: 16px;
+                margin: 0 4px;
+            }
+            .flag-emoji-fallback {
+                font-size: 16px;
+                margin: 0 4px;
+            }
+        }
+
         @media (min-width: 768px) {
             .section-sobre-content {
                 flex-direction: row;
@@ -541,9 +567,12 @@
                     <p class="typing-text">Já morei por um tempo na Argentina e trago comigo uma alma viajante, apaixonada por conhecer novas culturas e lugares.</p>
                     <p class="typing-text">
                         Meus atendimentos acontecem apenas on-line para qualquer lugar do Brasil e do mundo. Ah, em português e <em>en español</em>
-                        <!-- Substitua os caminhos abaixo pelas suas imagens locais -->
-                        <img src="imagens/flags/br.png" srcset="imagens/flags/br@2x.png 2x" alt="Bandeira do Brasil" class="flag-image">
-                        <img src="imagens/flags/es.png" srcset="imagens/flags/es@2x.png 2x" alt="Bandeira da Espanha" class="flag-image">
+                        <!-- Substitua os caminhos abaixo pelas suas imagens locais.
+                             onerror insere emoji fallback caso a imagem não carregue no mobile -->
+                        <img src="imagens/flags/br.png" srcset="imagens/flags/br@2x.png 2x" alt="Bandeira do Brasil" class="flag-image"
+                             onerror="this.onerror=null; this.style.display='none'; var s=document.createElement('span'); s.className='flag-emoji-fallback'; s.textContent='🇧🇷'; this.parentNode.insertBefore(s,this.nextSibling);">
+                        <img src="imagens/flags/es.png" srcset="imagens/flags/es@2x.png 2x" alt="Bandeira da Espanha" class="flag-image"
+                             onerror="this.onerror=null; this.style.display='none'; var s=document.createElement('span'); s.className='flag-emoji-fallback'; s.textContent='🇪🇸'; this.parentNode.insertBefore(s,this.nextSibling);">
                     </p>
                     <p class="typing-text">Vamos começar?</p>
                     <p class="typing-text">Mas antes, leia um pouquinho sobre a minha abordagem, minha linha teórica e o meu trabalho clínico. ⤵️</p>
