@@ -350,7 +350,7 @@
             align-items: center;
             justify-content: center;
             border-radius: 50%;
-            background: var(--cor-primaria); /* Cor única para todos os ícones flutuantes */
+            background: var(--cor-primaria);
             color: var(--cor-interna);
             text-decoration: none;
             font-size: 22px;
@@ -358,18 +358,18 @@
             transition: transform .18s ease, box-shadow .18s ease;
             animation: pulse 2.6s ease-in-out infinite;
         }
-        .floating-buttons a:hover { 
-            transform: translateY(-4px) scale(1.06); 
-            animation-play-state: paused; 
-            box-shadow: 0 14px 40px rgba(0,0,0,0.18); 
+        .floating-buttons a:hover {
+            transform: translateY(-4px) scale(1.06);
+            animation-play-state: paused;
+            box-shadow: 0 14px 40px rgba(0,0,0,0.18);
         }
 
         /* Removendo as cores originais dos ícones para usar a cor da paleta */
-        .floating-buttons a.whatsapp { 
-            background: var(--cor-primaria); 
+        .floating-buttons a.whatsapp {
+            background: var(--cor-primaria);
         }
-        .floating-buttons a.instagram { 
-            background: var(--cor-primaria); 
+        .floating-buttons a.instagram {
+            background: var(--cor-primaria);
         }
 
         @keyframes pulse {
@@ -392,7 +392,7 @@
                 order: 1;
             }
             .header.sticky h1 {
-                font-size: 24px; /* Ajusta o tamanho do texto no header sticky para telas maiores */
+                font-size: 24px;
             }
             .header.sticky .logo {
                 width: 50px;
@@ -421,7 +421,7 @@
                 font-size: 20px;
             }
             .header.sticky h1 {
-                font-size: 18px; /* Ajusta para telas pequenas */
+                font-size: 18px;
                 margin-left: 8px;
             }
             .header.sticky .logo {
@@ -440,7 +440,7 @@
 <body>
 
     <div class="header" id="header" data-keep-floating="1">
-        <img src="imagens/logo.png" alt="Logo Kassiane Lins Psicóloga" width="125" height="125" class="logo"> 
+        <img src="imagens/logo.png" alt="Logo Kassiane Lins Psicóloga" width="125" height="125" class="logo">
         <h1>Kassiane Lins dos Santos</h1>
         <p>Psicóloga Clínica - CRP 15/6551</p>
         <a href="https://wa.me/message/DN7GJ7W4BKA2E1" target="_blank" class="cta-button">Vamos Conversar</a>
@@ -462,9 +462,9 @@
     </div>
 
     <div class="dot-container">
-        <span class="dot" onclick="currentSlide(1)"></span> 
-        <span class="dot" onclick="currentSlide(2)"></span> 
-        <span class="dot" onclick="currentSlide(3)"></span> 
+        <span class="dot" onclick="currentSlide(1)"></span>
+        <span class="dot" onclick="currentSlide(2)"></span>
+        <span class="dot" onclick="currentSlide(3)"></span>
     </div>
 
     <section id="sobre">
@@ -481,7 +481,7 @@
                 <p>Mas antes, leia um pouquinho sobre a minha abordagem, minha linha teórica e o meu trabalho clínico. ⤵️</p>
             </div>
             <div class="section-sobre-image">
-                <img src="imagens/kassi-perfil.jpeg" alt="Perfil de Kassiane Lins" width="250" height="300" class="profile-img"> 
+                <img src="imagens/kassi-perfil.jpeg" alt="Perfil de Kassiane Lins" width="250" height="300" class="profile-img">
             </div>
         </div>
     </section>
@@ -512,7 +512,7 @@
             <ul>
                 <li><i class="fas fa-envelope"></i> Email: kassianelinspsi@gmail.com </li>
                 <li><i class="fab fa-whatsapp"></i> WhatsApp: 82 99907-9493 </li>
-                <li><i class="fab fa-instagram"></i> Instagram: @kassianelinsps</a> </li>
+                <li><i class="fab fa-instagram"></i> Instagram: <a href="https://www.instagram.com/kassianelinspsi/" target="_blank">kassianelinspsi</a> </li>
             </ul>
             <img src="imagens/qrcode.jpg" alt="QR CODE do WhatsApp" width="150" style="margin-top: 20px;">
         </div>
@@ -537,24 +537,40 @@
 
             // --- Gerenciamento do Header Sticky e variáveis CSS ---
             const header = document.getElementById('header');
+            const h2Elements = document.querySelectorAll('section h2');
+
+            // Função para definir a altura do header como uma variável CSS.
+            // Executada apenas no carregamento e redimensionamento da página.
             function updateHeaderHeight() {
                 const h = header ? header.offsetHeight : 120;
-                document.documentElement.style.setProperty('--header-height', h + 'px');
+                document.documentElement.style.setProperty('--header-height', `${h}px`);
             }
             
+            // Função para gerenciar a classe 'sticky' no header com base na rolagem.
             function stickyHeader() {
-                if (window.pageYOffset > 50) {
+                // A altura do cabeçalho original é usada para determinar o ponto de rolagem
+                // onde o cabeçalho "gruda".
+                const headerHeightToStick = header.offsetHeight;
+                if (window.pageYOffset > headerHeightToStick) {
                     header.classList.add("sticky");
+                    document.body.style.paddingTop = headerHeightToStick + 'px'; // Adiciona preenchimento para evitar que o conteúdo pule
                 } else {
                     header.classList.remove("sticky");
+                    document.body.style.paddingTop = '0';
                 }
-                updateHeaderHeight();
             }
-
-            window.addEventListener('scroll', stickyHeader, { passive: true });
+            
+            // Corrige o "bug" da pane no header.
+            // updateHeaderHeight() é chamado apenas ao carregar e redimensionar.
+            // stickyHeader() é chamado apenas ao rolar a página.
+            window.addEventListener('load', updateHeaderHeight);
             window.addEventListener('resize', updateHeaderHeight);
+            window.addEventListener('scroll', stickyHeader, { passive: true });
+            
+            // Garante que a altura do header seja definida no início
             updateHeaderHeight();
             stickyHeader();
+
 
             // --- Slideshow Automático com Dots ---
             let slideIndex = 0;
