@@ -72,8 +72,8 @@ body {
 }
 
 .flag-image-btn {
-    width: auto; /* Deixa a largura automática */
-    height: 18px; /* Reduz a altura para 18px */
+    width: auto;
+    height: 18px; /* Altura unificada para todas as resoluções */
     border-radius: 4px;
     box-shadow: 0 2px 6px rgba(0,0,0,0.1);
     border: 1px solid rgba(0,0,0,0.05);
@@ -498,6 +498,7 @@ footer p {
     .header .lang-icons-container {
         top: 20px;
         right: 20px;
+        gap: 8px; /* Reduz o espaço entre as bandeiras no mobile */
     }
 }
 
@@ -612,5 +613,11 @@ footer p {
     .header.sticky .lang-icons-container {
         display: none;
         visibility: hidden;
+    }
+    /* NOVO: Ajuste para os ícones de bandeira no mobile */
+    .lang-icons-container {
+        gap: 8px;
+        top: 15px;
+        right: 15px;
     }
 }
