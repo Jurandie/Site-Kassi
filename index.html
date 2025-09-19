@@ -11,7 +11,7 @@
     
     <style>
         :root {
-            /* Paleta de cores do seu código */
+            /* Paleta de cores */
             --cor-primaria: #a3d2ca;
             --cor-secundaria: #f7fff7;
             --cor-fundo: #fafafa;
@@ -21,7 +21,7 @@
             --cor-interna: #ffffff;
             --cor-sombra: rgba(0, 0, 0, 0.05);
 
-            /* Variável dinâmica para altura do header (atualizada por JS) */
+            /* Altura dinâmica do header (atualizada por JS) */
             --header-height: 120px;
         }
 
@@ -35,7 +35,7 @@
             scroll-behavior: smooth;
         }
 
-        /* --- Header --- */
+        /* --- Estilos do Header --- */
         .header {
             text-align: center;
             padding: 40px 20px 20px;
@@ -44,6 +44,7 @@
             transition: background-color 0.3s ease, padding 0.3s ease, box-shadow 0.3s ease;
             -webkit-backdrop-filter: none;
             backdrop-filter: none;
+            z-index: 1000;
         }
 
         .header.sticky {
@@ -51,7 +52,7 @@
             top: 0;
             width: 100%;
             padding: 12px 20px;
-            background-color: rgba(75,158,157,0.95); /* var(--cor-hover) com leve transparência */
+            background-color: rgba(75,158,157,0.95);
             z-index: 1100;
             box-shadow: 0 6px 18px rgba(0,0,0,0.12);
             -webkit-backdrop-filter: blur(6px);
@@ -125,7 +126,7 @@
             vertical-align: middle;
         }
 
-        /* --- SLIDE --- */
+        /* --- Estilos do Slideshow --- */
         .slideshow-container {
             width: 100%;
             position: relative;
@@ -185,7 +186,7 @@
             background-color: var(--cor-primaria);
         }
 
-        /* --- Seções (melhorias de layout) --- */
+        /* --- Estilos das Seções --- */
         section {
             max-width: 900px;
             margin: 40px auto;
@@ -195,11 +196,6 @@
             box-shadow: 0 8px 24px rgba(0,0,0,0.04);
         }
         
-        #sobre {
-            border-bottom: 2px solid transparent;
-        }
-
-        /* --- Sticky H2: agora é sticky e respeita altura do header --- */
         section h2 {
             font-family: 'Playfair Display', serif;
             font-size: 28px;
@@ -208,7 +204,6 @@
             margin: 0 0 18px 0;
             padding: 10px 12px;
             border-radius: 8px;
-            /* Sticky behavior */
             position: sticky;
             top: calc(var(--header-height) + 12px);
             z-index: 900;
@@ -219,7 +214,6 @@
             transition: transform 0.18s ease;
         }
 
-        /* Quando o header estiver próximo, reduzir um pouco visual do h2 */
         .header.sticky + section h2 {
             transform: translateY(-2px);
         }
@@ -237,12 +231,10 @@
             text-align: left;
         }
         
-        /* --- Sticky perfil (em telas maiores) --- */
         .section-sobre-image {
             text-align: center;
         }
 
-        /* deixa a imagem 'presa' ao rolar no desktop */
         @media (min-width: 768px) {
             .section-sobre-image {
                 position: sticky;
@@ -305,7 +297,7 @@
             color: var(--cor-primaria);
         }
 
-        /* --- Footer (fixo) --- */
+        /* --- Estilos do Footer --- */
         footer {
             text-align: center;
             padding: 12px;
@@ -323,15 +315,15 @@
             margin: 0;
         }
 
-        /* --- Floating Buttons: icon-only, sem texto --- */
+        /* --- Estilos dos botões flutuantes --- */
         .floating-buttons {
             position: fixed;
             right: 20px;
-            bottom: calc(12px + 56px); /* acima do footer */
+            bottom: calc(12px + 56px);
             display: flex;
             flex-direction: column;
             gap: 14px;
-            z-index: 2147483646; /* extremely high */
+            z-index: 2147483646;
             pointer-events: auto;
         }
 
@@ -342,7 +334,7 @@
             align-items:center;
             justify-content:center;
             border-radius:50%;
-            background: linear-gradient(180deg, var(--cor-primaria), var(--cor-hover));
+            background: var(--cor-primaria); /* Cor única para todos os ícones flutuantes */
             color: var(--cor-interna);
             text-decoration:none;
             font-size:22px;
@@ -352,8 +344,9 @@
         }
         .floating-buttons a:hover { transform: translateY(-4px) scale(1.06); animation-play-state: paused; box-shadow: 0 14px 40px rgba(0,0,0,0.18); }
 
-        .floating-buttons a.whatsapp { background: linear-gradient(180deg, #25d366, #06ac54); }
-        .floating-buttons a.instagram { background: radial-gradient(circle at 30% 30%, #fdf497 0%, #fd5949 45%, #d6249f 70%, #285AEB 100%); }
+        /* Removendo as cores originais dos ícones para usar a cor da paleta */
+        .floating-buttons a.whatsapp { background: var(--cor-primaria); }
+        .floating-buttons a.instagram { background: var(--cor-primaria); }
 
         @keyframes pulse {
             0% { transform: scale(1); box-shadow: 0 0 0 0 rgba(163,210,202,0.35); }
@@ -361,7 +354,7 @@
             100% { transform: scale(1); box-shadow: 0 0 0 0 rgba(163,210,202,0); }
         }
 
-        /* Responsividade */
+        /* --- Responsividade --- */
         @media (min-width: 768px) {
             .section-sobre-content {
                 flex-direction: row;
@@ -394,7 +387,6 @@
                 top: calc(var(--header-height) + 8px);
             }
 
-            /* FAB menor em mobile */
             .floating-buttons a {
                 width:48px;
                 height:48px;
@@ -402,10 +394,10 @@
             }
         }
 
-        /* Pequena regra para as bandeiras inseridas pelo script */
+        /* Regra para as bandeiras */
         .emoji-flag { width:20px; height:auto; vertical-align:middle; margin-left:4px; }
 
-        /* Fallback CSS para classes comumente injetadas (extra segurança) */
+        /* Fallback CSS para classes comumente injetadas (segurança extra) */
         .fale-comigo, .wh-widget, .whatsapp-chat, .chat-widget, .wa-floating, .floating-whatsapp { display:none !important; }
     </style>
 </head>
@@ -504,234 +496,170 @@
     </footer>
 
     <script>
-        // Atualiza a variável CSS --header-height conforme o header muda (útil para elementos sticky)
-        (function() {
+        // O código JavaScript está dividido em seções para melhor organização
+        document.addEventListener('DOMContentLoaded', () => {
+
+            // --- Gerenciamento do Header Sticky e variáveis CSS ---
             const header = document.getElementById('header');
             function updateHeaderHeight() {
-                // pega a altura atual do header (inclui paddings)
                 const h = header ? header.offsetHeight : 120;
                 document.documentElement.style.setProperty('--header-height', h + 'px');
             }
-
-            // sticky do header
+            
             function stickyHeader() {
                 if (window.pageYOffset > 50) {
                     header.classList.add("sticky");
                 } else {
                     header.classList.remove("sticky");
                 }
-                // atualiza sempre que toggla
                 updateHeaderHeight();
             }
 
-            // atualizar no load e resize também
-            window.addEventListener('scroll', stickyHeader, {passive: true});
+            window.addEventListener('scroll', stickyHeader, { passive: true });
             window.addEventListener('resize', updateHeaderHeight);
-            document.addEventListener('DOMContentLoaded', function() {
-                updateHeaderHeight();
-                stickyHeader();
-            });
-        })();
+            updateHeaderHeight();
+            stickyHeader();
 
-        // SLIDE (ligue ao visual sticky - pequenas melhorias)
-        let slideIndex = 0;
-        showSlides();
-
-        function showSlides() {
-            let i;
-            let slides = document.getElementsByClassName("mySlides");
-            let dots = document.getElementsByClassName("dot");
-            for (i = 0; i < slides.length; i++) {
-                slides[i].style.display = "none";  
-                slides[i].classList.remove('active');
+            // --- Slideshow Automático com Dots ---
+            let slideIndex = 0;
+            function showSlides() {
+                const slides = document.getElementsByClassName("mySlides");
+                const dots = document.getElementsByClassName("dot");
+                
+                for (let i = 0; i < slides.length; i++) {
+                    slides[i].style.display = "none";
+                    slides[i].classList.remove('active');
+                }
+                slideIndex++;
+                if (slideIndex > slides.length) { slideIndex = 1 }
+                
+                for (let i = 0; i < dots.length; i++) {
+                    dots[i].className = dots[i].className.replace(" active", "");
+                }
+                
+                if (slides[slideIndex - 1]) {
+                    slides[slideIndex - 1].style.display = "block";
+                    slides[slideIndex - 1].classList.add('active');
+                }
+                if (dots[slideIndex - 1]) dots[slideIndex - 1].className += " active";
+                
+                setTimeout(showSlides, 5000);
             }
-            slideIndex++;
-            if (slideIndex > slides.length) {slideIndex = 1}      
-            for (i = 0; i < dots.length; i++) {
-                dots[i].className = dots[i].className.replace(" active", "");
-            }
-            if (slides[slideIndex-1]) {
-                slides[slideIndex-1].style.display = "block";
-                slides[slideIndex-1].classList.add('active');
-            }
-            if (dots[slideIndex-1]) dots[slideIndex-1].className += " active";
-            setTimeout(showSlides, 5000); // troca a cada 5 segundos
-        }
 
-        function currentSlide(n) {
-            slideIndex = n-1;
-            showSlides();
-        }
-
-        /* ---------------------------
-            Substituição segura de emojis
-            --------------------------- */
-        (function() {
-            const flagEmojis = {
-                "🇧🇷": "https://flagcdn.com/w20/br.png",
-                "🇪🇸": "https://flagcdn.com/w20/es.png",
-                "🇦🇷": "https://flagcdn.com/w20/ar.png",
-                "🇵🇹": "https://flagcdn.com/w20/pt.png"
+            window.currentSlide = (n) => {
+                slideIndex = n - 1;
+                showSlides();
             };
-            const IGNORED_TAGS = new Set(['SCRIPT','STYLE','TEXTAREA','CODE','PRE','NOSCRIPT','AUDIO','VIDEO','CANVAS','SVG','IMG','A']);
-            function escapeForRegex(s){ return s.replace(/[.*+?^${}()|[\]\\]/g,'\\$&'); }
-            const emojisPattern = Object.keys(flagEmojis).map(escapeForRegex).join('|');
-            if (!emojisPattern) return;
-            const emojisRegex = new RegExp(emojisPattern, 'g');
+            showSlides();
 
-            function replaceEmojisInTextNodes() {
-                const walker = document.createTreeWalker(document.body, NodeFilter.SHOW_TEXT, {
-                    acceptNode: function(node) {
-                        const parent = node.parentNode;
-                        if (!parent) return NodeFilter.FILTER_REJECT;
-                        if (IGNORED_TAGS.has(parent.nodeName)) return NodeFilter.FILTER_REJECT;
-                        if (!node.nodeValue || !node.nodeValue.trim()) return NodeFilter.FILTER_REJECT;
-                        return NodeFilter.FILTER_ACCEPT;
-                    }
-                }, false);
 
-                const nodes = [];
-                while (walker.nextNode()) nodes.push(walker.currentNode);
-
-                nodes.forEach(node => {
-                    const text = node.nodeValue;
-                    if (!emojisRegex.test(text)) return;
-                    emojisRegex.lastIndex = 0;
-                    const frag = document.createDocumentFragment();
-                    let lastIndex = 0;
-                    let match;
-                    while ((match = emojisRegex.exec(text)) !== null) {
-                        const idx = match.index;
-                        if (idx > lastIndex) {
-                            frag.appendChild(document.createTextNode(text.slice(lastIndex, idx)));
+            /* ---------------------------
+                Substituição segura de emojis por imagens (solução robusta)
+                --------------------------- */
+            (function() {
+                const flagEmojis = {
+                    "🇧🇷": "https://flagcdn.com/w20/br.png",
+                    "🇪🇸": "https://flagcdn.com/w20/es.png",
+                    "🇦🇷": "https://flagcdn.com/w20/ar.png",
+                    "🇵🇹": "https://flagcdn.com/w20/pt.png"
+                };
+                const IGNORED_TAGS = new Set(['SCRIPT', 'STYLE', 'TEXTAREA', 'CODE', 'PRE', 'NOSCRIPT', 'AUDIO', 'VIDEO', 'CANVAS', 'SVG', 'IMG', 'A']);
+                
+                function escapeForRegex(s) { return s.replace(/[.*+?^${}()|[\]\\]/g, '\\$&'); }
+                
+                const emojisPattern = Object.keys(flagEmojis).map(escapeForRegex).join('|');
+                if (!emojisPattern) return;
+                
+                const emojisRegex = new RegExp(emojisPattern, 'g');
+                function replaceEmojisInTextNodes() {
+                    const walker = document.createTreeWalker(document.body, NodeFilter.SHOW_TEXT, {
+                        acceptNode: (node) => {
+                            const parent = node.parentNode;
+                            if (!parent || IGNORED_TAGS.has(parent.nodeName)) return NodeFilter.FILTER_REJECT;
+                            if (!node.nodeValue || !node.nodeValue.trim()) return NodeFilter.FILTER_REJECT;
+                            return NodeFilter.FILTER_ACCEPT;
                         }
-                        const emoji = match[0];
-                        const img = document.createElement('img');
-                        img.src = flagEmojis[emoji];
-                        img.alt = emoji;
-                        img.className = 'emoji-flag';
-                        img.style.width = '20px';
-                        img.style.height = 'auto';
-                        img.style.verticalAlign = 'middle';
-                        img.style.marginLeft = '4px';
-                        frag.appendChild(img);
-                        lastIndex = emojisRegex.lastIndex;
-                    }
-                    if (lastIndex < text.length) {
-                        frag.appendChild(document.createTextNode(text.slice(lastIndex)));
-                    }
-                    node.parentNode.replaceChild(frag, node);
-                });
-            }
-
-            if (document.readyState === 'loading') {
-                document.addEventListener('DOMContentLoaded', replaceEmojisInTextNodes);
-            } else {
-                replaceEmojisInTextNodes();
-            }
-        })();
-        /* ---------------------------
-            Fim: Substituição segura de emojis
-            --------------------------- */
-
-        /* =========================
-            Remoção robusta de widgets injetados com "fale / fale comigo"
-            Protege elementos com data-keep-floating="1"
-            ========================= */
-        (function(){
-            const KEEP_ATTR = 'data-keep-floating';
-            const TEXT_REGEX = /\bfale\b|\bfale com(?:igo)?\b|fale-comigo/i;
-            const CLASS_HINTS = ['whatsapp','whats','fale','chat','widget','floating','wa','wh-widget','whatsap'];
-            const INTERVALS = [0, 300, 900, 2000, 4000, 8000];
-
-            function isProtected(node){
-                if(!node || node.nodeType !== 1) return false;
-                if(node.hasAttribute && node.hasAttribute(KEEP_ATTR)) return true;
-                if(node.closest && node.closest('[' + KEEP_ATTR + ']')) return true;
-                return false;
-            }
-
-            function looksFloating(el, computed){
-                try {
-                    if(!computed) computed = window.getComputedStyle(el);
-                    const pos = computed.position;
-                    const z = parseInt(computed.zIndex) || 0;
-                    if(pos === 'fixed' || pos === 'absolute') return true;
-                    if(z > 900) return true;
-                } catch(e){}
-                return false;
-            }
-
-            function isPillShape(el){
-                try {
-                    const w = el.offsetWidth, h = el.offsetHeight;
-                    if(!w || !h) return false;
-                    if(w >= h * 2.4) return true;
-                    if(w > 130 && h >= 28 && h <= 160) return true;
-                } catch(e){}
-                return false;
-            }
-
-            function containsTriggerText(el){
-                try {
-                    const txt = (el.textContent || '').trim();
-                    if(!txt) return false;
-                    return TEXT_REGEX.test(txt);
-                } catch(e){ return false; }
-            }
-
-            function classHint(el){
-                try {
-                    const s = ((el.className || '') + ' ' + (el.id || '')).toLowerCase();
-                    return CLASS_HINTS.some(h => s.indexOf(h) !== -1);
-                } catch(e){ return false; }
-            }
-
-            function shouldRemove(el){
-                if(!el || el.nodeType !== 1) return false;
-                if(isProtected(el)) return false;
-                const computed = window.getComputedStyle(el);
-                const floating = looksFloating(el, computed);
-                const pill = isPillShape(el);
-                const textTrigger = containsTriggerText(el);
-                const hint = classHint(el);
-
-                if((floating || pill) && (textTrigger || hint)) return true;
-
-                // anchor with wa.me combined with pill/floating/text => remove
-                try {
-                    const hasWAAnchor = el.querySelector && el.querySelector('a[href*="wa.me"], a[href*="api.whatsapp.com"]');
-                    if(hasWAAnchor && (floating || pill || textTrigger || hint)) return true;
-                } catch(e){}
-                return false;
-            }
-
-            function scanAndRemove(){
-                try {
-                    // check body children first (fast)
-                    Array.from(document.body.children).forEach(ch => {
-                        if(isProtected(ch)) return;
-                        if(shouldRemove(ch)) {
-                            try { ch.remove(); } catch(e) { ch.style.display='none'; ch.hidden=true; }
+                    }, false);
+                    
+                    const nodes = [];
+                    while (walker.nextNode()) nodes.push(walker.currentNode);
+                    nodes.forEach(node => {
+                        const text = node.nodeValue;
+                        if (!emojisRegex.test(text)) return;
+                        emojisRegex.lastIndex = 0;
+                        const frag = document.createDocumentFragment();
+                        let lastIndex = 0;
+                        let match;
+                        while ((match = emojisRegex.exec(text)) !== null) {
+                            const idx = match.index;
+                            if (idx > lastIndex) {
+                                frag.appendChild(document.createTextNode(text.slice(lastIndex, idx)));
+                            }
+                            const emoji = match[0];
+                            const img = document.createElement('img');
+                            img.src = flagEmojis[emoji];
+                            img.alt = emoji;
+                            img.className = 'emoji-flag';
+                            frag.appendChild(img);
+                            lastIndex = emojisRegex.lastIndex;
                         }
+                        if (lastIndex < text.length) {
+                            frag.appendChild(document.createTextNode(text.slice(lastIndex)));
+                        }
+                        node.parentNode.replaceChild(frag, node);
                     });
-                    // then deep-check candidates (conservative)
+                }
+                replaceEmojisInTextNodes();
+            })();
+
+
+            /* =========================
+                Remoção robusta de widgets de chat injetados (solução de segurança)
+                ========================= */
+            (function() {
+                const KEEP_ATTR = 'data-keep-floating';
+                const TEXT_REGEX = /\bfale\b|\bfale com(?:igo)?\b|fale-comigo/i;
+                const CLASS_HINTS = ['whatsapp','whats','fale','chat','widget','floating','wa','wh-widget','whatsap'];
+                const INTERVALS = [0, 300, 900, 2000, 4000, 8000];
+
+                function isProtected(node) {
+                    if (!node || node.nodeType !== 1) return false;
+                    return node.hasAttribute(KEEP_ATTR) || (node.closest && node.closest(`[${KEEP_ATTR}]`));
+                }
+
+                function shouldRemove(el) {
+                    if (!el || el.nodeType !== 1 || isProtected(el)) return false;
+                    
+                    try {
+                        const computed = window.getComputedStyle(el);
+                        const isFloating = (computed.position === 'fixed' || computed.position === 'absolute' || parseInt(computed.zIndex) > 900);
+                        const hasClassHint = CLASS_HINTS.some(h => (el.className + el.id).toLowerCase().includes(h));
+                        const hasTriggerText = TEXT_REGEX.test((el.textContent || '').trim());
+                        const isPillShape = (el.offsetWidth > el.offsetHeight * 2.4 && el.offsetHeight >= 28 && el.offsetHeight <= 160);
+                        const hasWAAnchor = el.querySelector && el.querySelector('a[href*="wa.me"], a[href*="api.whatsapp.com"]');
+
+                        return (isFloating && (hasTriggerText || hasClassHint)) || hasWAAnchor;
+                    } catch (e) {
+                        return false;
+                    }
+                }
+
+                function scanAndRemove() {
                     const candidates = document.querySelectorAll('body *:not(['+KEEP_ATTR+'])');
                     candidates.forEach(el => {
-                        if(isProtected(el)) return;
-                        if(shouldRemove(el)){
+                        if (shouldRemove(el)) {
                             try { el.remove(); } catch(e) { el.style.display='none'; el.hidden=true; }
                         }
                     });
-                } catch(e){}
-            }
+                }
 
-            INTERVALS.forEach(t => setTimeout(scanAndRemove, t));
-            const observer = new MutationObserver(() => scanAndRemove());
-            observer.observe(document.documentElement || document.body, { childList: true, subtree: true });
-            // desligar observer após 12s
-            setTimeout(()=>observer.disconnect(), 12000);
-        })();
+                INTERVALS.forEach(t => setTimeout(scanAndRemove, t));
+                const observer = new MutationObserver(() => scanAndRemove());
+                observer.observe(document.documentElement || document.body, { childList: true, subtree: true });
+                setTimeout(() => observer.disconnect(), 12000);
+            })();
+
+        });
     </script>
 </body>
 </html>
