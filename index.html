@@ -322,11 +322,19 @@
             align-items: center;
             justify-content: center;
         }
-
+        
+        /* Estilos e animação para o ícone de check-circle */
         ul li i {
             margin-right: 10px;
             color: var(--cor-primaria);
             vertical-align: middle;
+            animation: pulse-check 2s infinite;
+        }
+        
+        @keyframes pulse-check {
+            0% { transform: scale(1); color: var(--cor-primaria); }
+            50% { transform: scale(1.1); color: var(--cor-hover); }
+            100% { transform: scale(1); color: var(--cor-primaria); }
         }
 
         /* --- Estilos do Footer --- */
@@ -372,11 +380,9 @@
             font-size: 22px;
             box-shadow: 0 10px 30px rgba(0,0,0,0.12);
             transition: transform .18s ease, box-shadow .18s ease;
-            animation: pulse 2.6s ease-in-out infinite;
         }
         .floating-buttons a:hover {
             transform: translateY(-4px) scale(1.06);
-            animation-play-state: paused;
             box-shadow: 0 14px 40px rgba(0,0,0,0.18);
         }
 
@@ -391,12 +397,6 @@
             100% { transform: scale(1); box-shadow: 0 0 0 0 rgba(255,0,0,0); }
         }
         
-        @keyframes pulse {
-            0% { transform: scale(1); box-shadow: 0 0 0 0 rgba(163,210,202,0.35); }
-            50% { transform: scale(1.06); box-shadow: 0 0 0 10px rgba(163,210,202,0); }
-            100% { transform: scale(1); box-shadow: 0 0 0 0 rgba(163,210,202,0); }
-        }
-
         /* --- Responsividade --- */
         @media (min-width: 768px) {
             .section-sobre-content {
