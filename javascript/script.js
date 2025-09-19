@@ -147,7 +147,7 @@ document.addEventListener('DOMContentLoaded', () => {
         elementsToTranslate.forEach(el => {
             const key = el.getAttribute('data-key');
             if (translations[lang] && translations[lang][key]) {
-                el.textContent = translations[lang][key]; // Alterado de innerHTML para textContent
+                el.innerHTML = translations[lang][key];
             }
         });
     }
