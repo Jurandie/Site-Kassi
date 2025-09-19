@@ -93,7 +93,7 @@ document.addEventListener('DOMContentLoaded', () => {
             'about-text-3': 'Eu tenho 27 anos, sou de Maceió - Alagoas, formada em Psicologia pelo Centro Universitário de Maceió (2021), com capacitação em Saúde Mental pela FAVENI e atualmente pós-graduanda em Psicologia Clínica pela PUC-RS.',
             'about-text-4': 'Amo estudar Psicanálise e ler, desde romances a poesias. Também amo ouvir jazz e o mar. Estar na natureza nos ajuda a nos conectar com nós mesmos, não é poético?',
             'about-text-5': 'Já morei por um tempo na Argentina e trago comigo uma alma viajante, apaixonada por conhecer novas culturas e lugares.',
-            'about-text-6-content': 'Meus atendimentos acontecem apenas on-line para qualquer lugar do Brasil e do mundo. Ah, em português e <em>en español</em>',
+            'about-text-6': 'Meus atendimentos acontecem apenas on-line para qualquer lugar do Brasil e do mundo. Ah, em português e en español',
             'about-text-7': 'Vamos começar?',
             'about-text-8': 'Mas antes, leia um pouquinho sobre a minha abordagem, minha linha teórica e o meu trabalho clínico. ⤵️',
             'approach-title': 'Minha Abordagem',
@@ -115,11 +115,11 @@ document.addEventListener('DOMContentLoaded', () => {
             'slide-text-3': 'Al hablar, cada uno puede encontrar nuevos caminos para vivir.',
             'about-title': 'Sobre Mí',
             'about-text-1': '¡Hola, qué bueno tenerte aquí!',
-            'about-text-2': 'Permíteme presentarte para que me conozcas un poco mejor:',
+            'about-text-2': 'Permíteme presentarme para que me conozcas un poco mejor:',
             'about-text-3': 'Tengo 27 años, soy de Maceió - Alagoas, graduada en Psicología por el Centro Universitario de Maceió (2021), con capacitación en Salud Mental por FAVENI y actualmente posgraduada en Psicología Clínica por la PUC-RS.',
             'about-text-4': 'Me encanta estudiar Psicoanálisis y leer, desde novelas hasta poesías. También me encanta escuchar jazz y el mar. Estar en la naturaleza nos ayuda a conectar con nosotros mismos, ¿no es poético?',
             'about-text-5': 'Ya viví un tiempo en Argentina y traigo conmigo un alma viajera, apasionada por conocer nuevas culturas y lugares.',
-            'about-text-6-content': 'Mis consultas son solo en línea para cualquier lugar de Brasil y del mundo. Ah, en portugués y en español',
+            'about-text-6': 'Mis consultas son solo en línea para cualquier lugar de Brasil y del mundo. Ah, en portugués y en español',
             'about-text-7': '¿Empezamos?',
             'about-text-8': 'Pero antes, lee un poco sobre mi enfoque, mi línea teórica y mi trabajo clínico. ⤵️',
             'approach-title': 'Mi Enfoque',
@@ -135,33 +135,31 @@ document.addEventListener('DOMContentLoaded', () => {
         }
     };
 
-    const langButtons = document.querySelectorAll('.lang-icon');
+    let currentLang = 'pt';
+    const langButton = document.getElementById('lang-es');
 
     // Função que aplica as traduções
     function setLanguage(lang) {
+        currentLang = lang;
         document.documentElement.lang = lang; // Define o atributo 'lang' do HTML
         const elementsToTranslate = document.querySelectorAll('[data-key]');
         
         elementsToTranslate.forEach(el => {
             const key = el.getAttribute('data-key');
             if (translations[lang] && translations[lang][key]) {
-                if (key === 'contact-instagram' || key === 'about-text-6') {
-                    // Não altera o conteúdo do link ou do container
-                } else {
-                    el.innerHTML = translations[lang][key];
-                }
+                el.textContent = translations[lang][key]; // Alterado de innerHTML para textContent
             }
         });
     }
 
-    // Adiciona o evento de clique a todos os botões de idioma
-    langButtons.forEach(button => {
-        button.addEventListener('click', () => {
-            const lang = button.id.replace('lang-', ''); // Extrai 'pt' ou 'es' do ID
-            setLanguage(lang);
+    // Adiciona o evento de clique ao botão
+    if (langButton) {
+        langButton.addEventListener('click', () => {
+            if (currentLang === 'pt') {
+                setLanguage('es');
+            } else {
+                setLanguage('pt');
+            }
         });
-    });
-
-    // Inicia a tradução para o idioma padrão (pt) ao carregar a página
-    setLanguage('pt');
+    }
 });
