@@ -460,6 +460,7 @@
             }
         }
 
+        /* --- Responsividade --- */
         @media (min-width: 768px) {
             .section-sobre-content {
                 flex-direction: row;
@@ -468,6 +469,8 @@
             .section-sobre-image {
                 order: 2;
                 padding-left: 30px;
+                position: static;
+                align-self: auto;
             }
             .section-sobre-text {
                 order: 1;
@@ -478,6 +481,23 @@
             .header.sticky .logo {
                 width: 50px;
                 height: 50px;
+            }
+            /* Estilos da seção de Contato */
+            #contato ul {
+                /* Centraliza a lista inteira, mas os itens internos se alinham à esquerda */
+                align-items: flex-start;
+                max-width: 400px; /* Limita a largura para centralizar em telas maiores */
+                margin: 0 auto;
+            }
+            #contato ul li {
+                /* Garante que o ícone e o texto permaneçam alinhados no início da linha */
+                justify-content: flex-start;
+                text-align: left; /* Alinha o texto à esquerda */
+                width: 100%; /* Ocupa a largura total para alinhar corretamente */
+                max-width: 300px; /* Evita que a lista fique muito larga em telas grandes */
+            }
+            #contato ul li i {
+                margin-right: 12px;
             }
         }
 
@@ -530,6 +550,23 @@
             .header.sticky .cta-button {
                 display: none;
             }
+            /* Estilos da seção de Contato */
+            #contato ul {
+                /* Centraliza a lista inteira, mas os itens internos se alinham à esquerda */
+                align-items: flex-start;
+                max-width: 400px; /* Limita a largura para centralizar em telas maiores */
+                margin: 0 auto;
+            }
+            #contato ul li {
+                /* Garante que o ícone e o texto permaneçam alinhados no início da linha */
+                justify-content: flex-start;
+                text-align: left; /* Alinha o texto à esquerda */
+                width: 100%; /* Ocupa a largura total para alinhar corretamente */
+                max-width: 300px; /* Evita que a lista fique muito larga em telas grandes */
+            }
+            #contato ul li i {
+                margin-right: 12px;
+            }
         }
     </style>
 </head>
@@ -575,8 +612,6 @@
                     <p class="typing-text">Já morei por um tempo na Argentina e trago comigo uma alma viajante, apaixonada por conhecer novas culturas e lugares.</p>
                     <p class="typing-text">
                         Meus atendimentos acontecem apenas on-line para qualquer lugar do Brasil e do mundo. Ah, em português e <em>en español</em>
-                        <!-- Substitua os caminhos abaixo pelas suas imagens locais.
-                             onerror insere emoji fallback caso a imagem não carregue no mobile -->
                         <span class="flags">
                             <img src="imagens/flags/br.png" srcset="imagens/flags/br@2x.png 2x" alt="Bandeira do Brasil" class="flag-image"
                                  onerror="this.onerror=null; this.style.display='none'; var s=document.createElement('span'); s.className='flag-emoji-fallback'; s.textContent='🇧🇷'; this.parentNode.insertBefore(s,this.nextSibling);">
@@ -616,7 +651,7 @@
             <h2>Contato</h2>
             <div class="section-content-centered">
                 <ul>
-                    <li><i class="fas fa-envelope"></i> Email: kassianelinspsi@gmail.com</li>
+                    <li><i class="fas fa-envelope"></i> kassianelinspsi@gmail.com</li>
                     <li><i class="fab fa-whatsapp"></i> WhatsApp: 82 99907-9493</li>
                     <li><i class="fab fa-instagram"></i> Instagram: <a href="https://www.instagram.com/kassianelinspsi/" target="_blank" rel="noopener"> @kassianelinspsi</a></li>
                 </ul>
