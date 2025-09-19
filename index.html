@@ -323,37 +323,42 @@
             margin: 0;
         }
 
-        /* --- Floating Action Button (CTA fixo) --- */
-        .fab {
+        /* --- Floating Buttons: icon-only, sem texto --- */
+        .floating-buttons {
             position: fixed;
             right: 20px;
             bottom: calc(12px + 56px); /* acima do footer */
+            display: flex;
+            flex-direction: column;
+            gap: 14px;
+            z-index: 2147483646; /* extremely high */
+            pointer-events: auto;
+        }
+
+        .floating-buttons a {
+            width: 56px;
+            height: 56px;
+            display:inline-flex;
+            align-items:center;
+            justify-content:center;
+            border-radius:50%;
             background: linear-gradient(180deg, var(--cor-primaria), var(--cor-hover));
             color: var(--cor-interna);
-            padding: 14px 18px;
-            border-radius: 50px;
-            box-shadow: 0 10px 30px rgba(0,0,0,0.15);
-            z-index: 1200;
-            display: flex;
-            gap: 10px;
-            align-items: center;
-            text-decoration: none;
-            font-weight: 600;
-            transition: transform 0.18s ease, box-shadow 0.2s ease;
+            text-decoration:none;
+            font-size:22px;
+            box-shadow: 0 10px 30px rgba(0,0,0,0.12);
+            transition: transform .18s ease, box-shadow .18s ease;
+            animation: pulse 2.6s ease-in-out infinite;
         }
+        .floating-buttons a:hover { transform: translateY(-4px) scale(1.06); animation-play-state: paused; box-shadow: 0 14px 40px rgba(0,0,0,0.18); }
 
-        .fab:hover {
-            transform: translateY(-4px);
-            box-shadow: 0 14px 40px rgba(0,0,0,0.2);
-        }
+        .floating-buttons a.whatsapp { background: linear-gradient(180deg, #25d366, #06ac54); }
+        .floating-buttons a.instagram { background: radial-gradient(circle at 30% 30%, #fdf497 0%, #fd5949 45%, #d6249f 70%, #285AEB 100%); }
 
-        .fab .icon {
-            width: 24px;
-            height: 24px;
-            display: inline-flex;
-            align-items: center;
-            justify-content: center;
-            font-size: 18px;
+        @keyframes pulse {
+            0% { transform: scale(1); box-shadow: 0 0 0 0 rgba(163,210,202,0.35); }
+            50% { transform: scale(1.06); box-shadow: 0 0 0 10px rgba(163,210,202,0); }
+            100% { transform: scale(1); box-shadow: 0 0 0 0 rgba(163,210,202,0); }
         }
 
         /* Responsividade */
@@ -390,20 +395,23 @@
             }
 
             /* FAB menor em mobile */
-            .fab {
-                padding: 12px 14px;
-                border-radius: 40px;
-                bottom: calc(12px + 56px);
+            .floating-buttons a {
+                width:48px;
+                height:48px;
+                font-size:20px;
             }
         }
 
         /* Pequena regra para as bandeiras inseridas pelo script */
         .emoji-flag { width:20px; height:auto; vertical-align:middle; margin-left:4px; }
+
+        /* Fallback CSS para classes comumente injetadas (extra segurança) */
+        .fale-comigo, .wh-widget, .whatsapp-chat, .chat-widget, .wa-floating, .floating-whatsapp { display:none !important; }
     </style>
 </head>
 <body>
 
-    <div class="header" id="header">
+    <div class="header" id="header" data-keep-floating="1">
         <img src="imagens/logo.png" alt="Logo Kassiane Lins Psicóloga" width="125" height="125" class="logo"> 
         <h1>Kassiane Lins dos Santos</h1>
         <p>Psicóloga Clínica - CRP 15/6551</p>
@@ -482,11 +490,14 @@
         </div>
     </section>
 
-    <!-- Floating Action Button (CTA) -->
-    <a class="fab" href="https://wa.me/message/DN7GJ7W4BKA2E1" target="_blank" aria-label="WhatsApp">
-        <span class="icon"><i class="fab fa-whatsapp"></i></span>
-        <span>Fale comigo</span>
-    </a>
+    <div class="floating-buttons" data-keep-floating="1" aria-hidden="false">
+        <a href="https://wa.me/5582999079493" target="_blank" class="whatsapp" title="WhatsApp" aria-label="WhatsApp" data-keep-floating="1">
+            <i class="fab fa-whatsapp" aria-hidden="true"></i>
+        </a>
+        <a href="https://www.instagram.com/kassianelinspsi/" target="_blank" class="instagram" title="Instagram" aria-label="Instagram" data-keep-floating="1">
+            <i class="fab fa-instagram" aria-hidden="true"></i>
+        </a>
+    </div>
 
     <footer>
         <p>"Cuidar de si é acolher o que insiste em ser dito."</p>
@@ -498,7 +509,7 @@
             const header = document.getElementById('header');
             function updateHeaderHeight() {
                 // pega a altura atual do header (inclui paddings)
-                const h = header.offsetHeight;
+                const h = header ? header.offsetHeight : 120;
                 document.documentElement.style.setProperty('--header-height', h + 'px');
             }
 
@@ -539,9 +550,11 @@
             for (i = 0; i < dots.length; i++) {
                 dots[i].className = dots[i].className.replace(" active", "");
             }
-            slides[slideIndex-1].style.display = "block";
-            slides[slideIndex-1].classList.add('active');
-            dots[slideIndex-1].className += " active";
+            if (slides[slideIndex-1]) {
+                slides[slideIndex-1].style.display = "block";
+                slides[slideIndex-1].classList.add('active');
+            }
+            if (dots[slideIndex-1]) dots[slideIndex-1].className += " active";
             setTimeout(showSlides, 5000); // troca a cada 5 segundos
         }
 
@@ -551,8 +564,8 @@
         }
 
         /* ---------------------------
-           Substituição segura de emojis
-           --------------------------- */
+            Substituição segura de emojis
+            --------------------------- */
         (function() {
             const flagEmojis = {
                 "🇧🇷": "https://flagcdn.com/w20/br.png",
@@ -618,8 +631,107 @@
             }
         })();
         /* ---------------------------
-           Fim: Substituição segura de emojis
-           --------------------------- */
+            Fim: Substituição segura de emojis
+            --------------------------- */
+
+        /* =========================
+            Remoção robusta de widgets injetados com "fale / fale comigo"
+            Protege elementos com data-keep-floating="1"
+            ========================= */
+        (function(){
+            const KEEP_ATTR = 'data-keep-floating';
+            const TEXT_REGEX = /\bfale\b|\bfale com(?:igo)?\b|fale-comigo/i;
+            const CLASS_HINTS = ['whatsapp','whats','fale','chat','widget','floating','wa','wh-widget','whatsap'];
+            const INTERVALS = [0, 300, 900, 2000, 4000, 8000];
+
+            function isProtected(node){
+                if(!node || node.nodeType !== 1) return false;
+                if(node.hasAttribute && node.hasAttribute(KEEP_ATTR)) return true;
+                if(node.closest && node.closest('[' + KEEP_ATTR + ']')) return true;
+                return false;
+            }
+
+            function looksFloating(el, computed){
+                try {
+                    if(!computed) computed = window.getComputedStyle(el);
+                    const pos = computed.position;
+                    const z = parseInt(computed.zIndex) || 0;
+                    if(pos === 'fixed' || pos === 'absolute') return true;
+                    if(z > 900) return true;
+                } catch(e){}
+                return false;
+            }
+
+            function isPillShape(el){
+                try {
+                    const w = el.offsetWidth, h = el.offsetHeight;
+                    if(!w || !h) return false;
+                    if(w >= h * 2.4) return true;
+                    if(w > 130 && h >= 28 && h <= 160) return true;
+                } catch(e){}
+                return false;
+            }
+
+            function containsTriggerText(el){
+                try {
+                    const txt = (el.textContent || '').trim();
+                    if(!txt) return false;
+                    return TEXT_REGEX.test(txt);
+                } catch(e){ return false; }
+            }
+
+            function classHint(el){
+                try {
+                    const s = ((el.className || '') + ' ' + (el.id || '')).toLowerCase();
+                    return CLASS_HINTS.some(h => s.indexOf(h) !== -1);
+                } catch(e){ return false; }
+            }
+
+            function shouldRemove(el){
+                if(!el || el.nodeType !== 1) return false;
+                if(isProtected(el)) return false;
+                const computed = window.getComputedStyle(el);
+                const floating = looksFloating(el, computed);
+                const pill = isPillShape(el);
+                const textTrigger = containsTriggerText(el);
+                const hint = classHint(el);
+
+                if((floating || pill) && (textTrigger || hint)) return true;
+
+                // anchor with wa.me combined with pill/floating/text => remove
+                try {
+                    const hasWAAnchor = el.querySelector && el.querySelector('a[href*="wa.me"], a[href*="api.whatsapp.com"]');
+                    if(hasWAAnchor && (floating || pill || textTrigger || hint)) return true;
+                } catch(e){}
+                return false;
+            }
+
+            function scanAndRemove(){
+                try {
+                    // check body children first (fast)
+                    Array.from(document.body.children).forEach(ch => {
+                        if(isProtected(ch)) return;
+                        if(shouldRemove(ch)) {
+                            try { ch.remove(); } catch(e) { ch.style.display='none'; ch.hidden=true; }
+                        }
+                    });
+                    // then deep-check candidates (conservative)
+                    const candidates = document.querySelectorAll('body *:not(['+KEEP_ATTR+'])');
+                    candidates.forEach(el => {
+                        if(isProtected(el)) return;
+                        if(shouldRemove(el)){
+                            try { el.remove(); } catch(e) { el.style.display='none'; el.hidden=true; }
+                        }
+                    });
+                } catch(e){}
+            }
+
+            INTERVALS.forEach(t => setTimeout(scanAndRemove, t));
+            const observer = new MutationObserver(() => scanAndRemove());
+            observer.observe(document.documentElement || document.body, { childList: true, subtree: true });
+            // desligar observer após 12s
+            setTimeout(()=>observer.disconnect(), 12000);
+        })();
     </script>
 </body>
 </html>
