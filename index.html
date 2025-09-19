@@ -223,20 +223,19 @@
         }
 
         .header.sticky + section h2 {
-            transform: translateY(-2px);
+            transform: translateY(calc(-1 * var(--header-height) + 12px));
         }
 
         .section-sobre-content {
             display: flex;
             flex-direction: column;
             align-items: center;
-            text-align: center;
+            text-align: center; /* Alinha o texto da seção sobre no mobile */
             gap: 20px;
         }
 
         .section-sobre-text {
             flex: 1;
-            text-align: left;
         }
         
         .section-sobre-image {
@@ -246,12 +245,12 @@
         @media (min-width: 768px) {
             .section-sobre-content {
                 flex-direction: row;
-                text-align: left;
+                text-align: left; /* Alinha o texto da seção sobre à esquerda no desktop */
             }
             .section-sobre-image {
                 order: 2;
                 padding-left: 30px;
-                position: static; /* Remove o position: sticky em desktop para evitar problemas de sobreposição */
+                position: static;
                 align-self: auto;
             }
             .section-sobre-text {
@@ -271,11 +270,11 @@
             display: flex;
             flex-direction: column;
             align-items: center;
+            text-align: center;
         }
         
         .section-content-centered p {
             max-width: 700px;
-            text-align: center;
         }
 
         .cta-button {
@@ -299,20 +298,24 @@
         ul {
             list-style: none;
             padding: 0;
-            display: inline-block;
-            text-align: left;
+            display: flex; /* Transforma a lista em flexbox */
+            flex-direction: column; /* Organiza os itens em coluna */
+            align-items: center; /* Centraliza os itens horizontalmente */
+            text-align: center; /* Garante que o texto dentro de cada li seja centralizado */
         }
 
         ul li {
             margin-bottom: 15px;
             font-size: 17px;
+            display: flex; /* Permite que o ícone e o texto fiquem na mesma linha */
+            align-items: center; /* Alinha ícone e texto verticalmente */
+            justify-content: center; /* Centraliza o conteúdo da linha */
         }
 
-        /* CORREÇÃO 2: Adiciona alinhamento vertical para ícones */
         ul li i {
             margin-right: 10px;
             color: var(--cor-primaria);
-            vertical-align: middle; /* Garante que o ícone fique alinhado com o texto */
+            vertical-align: middle;
         }
 
         /* --- Estilos do Footer --- */
@@ -366,12 +369,12 @@
             box-shadow: 0 14px 40px rgba(0,0,0,0.18);
         }
 
-        /* Alterando as cores dos botões flutuantes para as cores originais da marca */
+        /* Removendo as cores originais dos ícones para usar a cor da paleta */
         .floating-buttons a.whatsapp {
-            background-color: #25d366; /* Verde do WhatsApp */
+            background: var(--cor-primaria);
         }
         .floating-buttons a.instagram {
-            background: linear-gradient(45deg, #f09433 0%, #e6683c 25%, #dc2743 50%, #cc2366 75%, #bc1888 100%);
+            background: var(--cor-primaria);
         }
 
         @keyframes pulse {
@@ -493,7 +496,6 @@
         <div class="section-content-centered">
             <p>Dedico-me ao atendimento clínico de adultos, oferecendo um espaço de escuta que considera a singularidade de cada sujeito. Entendo que todo sofrimento merece ser acolhido e que, muitas vezes, é nos detalhes do que se diz que se revelam sentidos importantes sobre a vida de cada um.</p>
             <p>A psicanálise parte da ideia de que o inconsciente se manifesta na fala, nos sintomas e nos impasses que encontramos ao longo da vida. Meu trabalho é acompanhar o sujeito nesse percurso, possibilitando que encontre novas formas de se implicar em sua história e de lidar com aquilo que o faz sofrer.</p>
-            <p>Com essa escuta, o processo analítico pode favorecer transformações, abertura de novos caminhos e um viver mais próximo do que faz sentido para cada sujeito.</p>
         </div>
     </section>
 
