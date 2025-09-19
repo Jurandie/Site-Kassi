@@ -359,7 +359,7 @@
         .floating-buttons {
             position: fixed;
             right: 20px;
-            bottom: 80px; /* Ajuste para ter espaço do footer */
+            bottom: 80px; /* Posiciona os botões acima do rodapé */
             display: flex;
             flex-direction: column;
             gap: 14px;
@@ -437,8 +437,8 @@
                 top: calc(var(--sticky-header-height) + 8px);
             }
             .floating-buttons {
-                top: calc(var(--sticky-header-height) + 20px);
-                bottom: auto; /* Remove o posicionamento do rodapé para o ajuste superior */
+                bottom: 80px;
+                top: auto;
             }
             .floating-buttons a {
                 width: 48px;
@@ -454,7 +454,7 @@
                 padding: 8px 15px;
             }
             .header.sticky .logo {
-                display: block; /* Mostra o logo no cabeçalho fixo */
+                display: block; /* Garante que o logo apareça no cabeçalho fixo */
                 width: 50px; /* Reduz o tamanho do logo */
                 height: 50px;
                 margin-right: 10px;
