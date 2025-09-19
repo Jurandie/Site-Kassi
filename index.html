@@ -42,31 +42,35 @@
             background-color: var(--cor-secundaria);
             position: relative;
             transition: background-color 0.3s ease, padding 0.3s ease, box-shadow 0.3s ease;
-            -webkit-backdrop-filter: none;
-            backdrop-filter: none;
             z-index: 1000;
+            max-width: 1000px;
+            margin: 0 auto;
         }
 
         .header.sticky {
             position: fixed;
             top: 0;
+            left: 0;
+            right: 0;
             width: 100%;
             padding: 12px 20px;
             background-color: rgba(75,158,157,0.95);
             z-index: 1100;
             box-shadow: 0 6px 18px rgba(0,0,0,0.12);
-            -webkit-backdrop-filter: blur(6px);
             backdrop-filter: blur(6px);
-            display: flex; /* ATENÇÃO: ALTERAÇÃO AQUI */
-            justify-content: center; /* ATENÇÃO: ALTERAÇÃO AQUI */
-            align-items: center; /* ATENÇÃO: ALTERAÇÃO AQUI */
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            flex-wrap: wrap;
+            max-width: none;
+            margin: 0;
         }
 
         .header .logo {
             margin-bottom: 15px;
             transition: width 0.3s ease, height 0.3s ease, margin 0.3s ease;
         }
-
+        
         .header.sticky .logo {
             width: 72px;
             height: 72px;
@@ -89,18 +93,19 @@
             margin: 0;
             transition: opacity 0.3s ease;
         }
-        
+
         .header.sticky h1, .header.sticky p {
             color: var(--cor-interna);
         }
         
         .header.sticky h1 {
             font-size: 20px;
+            margin-left: 10px;
         }
 
         .header.sticky p {
-            opacity: 0;
             display: none;
+            opacity: 0;
         }
 
         .header .cta-button {
@@ -125,7 +130,6 @@
         }
 
         .header.sticky .logo, .header.sticky h1, .header.sticky .cta-button {
-            /* display: inline-block; - REMOVIDO */
             vertical-align: middle;
         }
 
@@ -135,6 +139,7 @@
             position: relative;
             margin: 0 auto;
             overflow: hidden;
+            max-width: 1200px; /* Mantém a imagem do slideshow com largura máxima */
         }
 
         .mySlides {
@@ -239,10 +244,18 @@
         }
 
         @media (min-width: 768px) {
+            .section-sobre-content {
+                flex-direction: row;
+                text-align: left;
+            }
             .section-sobre-image {
-                position: sticky;
-                top: calc(var(--header-height) + 28px);
-                align-self: flex-start;
+                order: 2;
+                padding-left: 30px;
+                position: static; /* Remove o position: sticky em desktop para evitar problemas de sobreposição */
+                align-self: auto;
+            }
+            .section-sobre-text {
+                order: 1;
             }
         }
 
@@ -333,23 +346,31 @@
         .floating-buttons a {
             width: 56px;
             height: 56px;
-            display:inline-flex;
-            align-items:center;
-            justify-content:center;
-            border-radius:50%;
+            display: inline-flex;
+            align-items: center;
+            justify-content: center;
+            border-radius: 50%;
             background: var(--cor-primaria); /* Cor única para todos os ícones flutuantes */
             color: var(--cor-interna);
-            text-decoration:none;
-            font-size:22px;
+            text-decoration: none;
+            font-size: 22px;
             box-shadow: 0 10px 30px rgba(0,0,0,0.12);
             transition: transform .18s ease, box-shadow .18s ease;
             animation: pulse 2.6s ease-in-out infinite;
         }
-        .floating-buttons a:hover { transform: translateY(-4px) scale(1.06); animation-play-state: paused; box-shadow: 0 14px 40px rgba(0,0,0,0.18); }
+        .floating-buttons a:hover { 
+            transform: translateY(-4px) scale(1.06); 
+            animation-play-state: paused; 
+            box-shadow: 0 14px 40px rgba(0,0,0,0.18); 
+        }
 
         /* Removendo as cores originais dos ícones para usar a cor da paleta */
-        .floating-buttons a.whatsapp { background: var(--cor-primaria); }
-        .floating-buttons a.instagram { background: var(--cor-primaria); }
+        .floating-buttons a.whatsapp { 
+            background: var(--cor-primaria); 
+        }
+        .floating-buttons a.instagram { 
+            background: var(--cor-primaria); 
+        }
 
         @keyframes pulse {
             0% { transform: scale(1); box-shadow: 0 0 0 0 rgba(163,210,202,0.35); }
@@ -363,14 +384,19 @@
                 flex-direction: row;
                 text-align: left;
             }
-
             .section-sobre-image {
                 order: 2;
                 padding-left: 30px;
             }
-
             .section-sobre-text {
                 order: 1;
+            }
+            .header.sticky h1 {
+                font-size: 24px; /* Ajusta o tamanho do texto no header sticky para telas maiores */
+            }
+            .header.sticky .logo {
+                width: 50px;
+                height: 50px;
             }
         }
         
@@ -389,19 +415,26 @@
                 font-size: 20px;
                 top: calc(var(--header-height) + 8px);
             }
-
             .floating-buttons a {
-                width:48px;
-                height:48px;
-                font-size:20px;
+                width: 48px;
+                height: 48px;
+                font-size: 20px;
+            }
+            .header.sticky h1 {
+                font-size: 18px; /* Ajusta para telas pequenas */
+                margin-left: 8px;
+            }
+            .header.sticky .logo {
+                width: 45px;
+                height: 45px;
             }
         }
-
+        
         /* Regra para as bandeiras */
-        .emoji-flag { width:20px; height:auto; vertical-align:middle; margin-left:4px; }
+        .emoji-flag { width: 20px; height: auto; vertical-align: middle; margin-left: 4px; }
 
         /* Fallback CSS para classes comumente injetadas (segurança extra) */
-        .fale-comigo, .wh-widget, .whatsapp-chat, .chat-widget, .wa-floating, .floating-whatsapp { display:none !important; }
+        .fale-comigo, .wh-widget, .whatsapp-chat, .chat-widget, .wa-floating, .floating-whatsapp { display: none !important; }
     </style>
 </head>
 <body>
@@ -479,7 +512,7 @@
             <ul>
                 <li><i class="fas fa-envelope"></i> Email: kassianelinspsi@gmail.com </li>
                 <li><i class="fab fa-whatsapp"></i> WhatsApp: 82 99907-9493 </li>
-                <li><i class="fab fa-instagram"></i> Instagram: <a href="https://www.instagram.com/kassianelinspsi/" target="_blank">kassianelinspsi</a> </li>
+                <li><i class="fab fa-instagram"></i> Instagram: @kassianelinsps</a> </li>
             </ul>
             <img src="imagens/qrcode.jpg" alt="QR CODE do WhatsApp" width="150" style="margin-top: 20px;">
         </div>
@@ -555,7 +588,6 @@
             };
             showSlides();
 
-
             /* ---------------------------
                 Substituição segura de emojis por imagens (solução robusta)
                 --------------------------- */
@@ -615,7 +647,6 @@
                 replaceEmojisInTextNodes();
             })();
 
-
             /* =========================
                 Remoção robusta de widgets de chat injetados (solução de segurança)
                 ========================= */
@@ -641,7 +672,7 @@
                         const isPillShape = (el.offsetWidth > el.offsetHeight * 2.4 && el.offsetHeight >= 28 && el.offsetHeight <= 160);
                         const hasWAAnchor = el.querySelector && el.querySelector('a[href*="wa.me"], a[href*="api.whatsapp.com"]');
 
-                        return (isFloating && (hasTriggerText || hasClassHint)) || hasWAAnchor;
+                        return (isFloating && (hasClassHint || hasTriggerText)) || hasWAAnchor;
                     } catch (e) {
                         return false;
                     }
@@ -661,7 +692,6 @@
                 observer.observe(document.documentElement || document.body, { childList: true, subtree: true });
                 setTimeout(() => observer.disconnect(), 12000);
             })();
-
         });
     </script>
 </body>
