@@ -308,9 +308,11 @@
             font-size: 17px;
         }
 
+        /* CORREÇÃO 2: Adiciona alinhamento vertical para ícones */
         ul li i {
             margin-right: 10px;
             color: var(--cor-primaria);
+            vertical-align: middle; /* Garante que o ícone fique alinhado com o texto */
         }
 
         /* --- Estilos do Footer --- */
@@ -364,12 +366,12 @@
             box-shadow: 0 14px 40px rgba(0,0,0,0.18);
         }
 
-        /* Removendo as cores originais dos ícones para usar a cor da paleta */
+        /* Alterando as cores dos botões flutuantes para as cores originais da marca */
         .floating-buttons a.whatsapp {
-            background: var(--cor-primaria);
+            background-color: #25d366; /* Verde do WhatsApp */
         }
         .floating-buttons a.instagram {
-            background: var(--cor-primaria);
+            background: linear-gradient(45deg, #f09433 0%, #e6683c 25%, #dc2743 50%, #cc2366 75%, #bc1888 100%);
         }
 
         @keyframes pulse {
@@ -538,37 +540,33 @@
             // --- Gerenciamento do Header Sticky e variáveis CSS ---
             const header = document.getElementById('header');
             const h2Elements = document.querySelectorAll('section h2');
+            let initialHeaderHeight = 0; // Armazena a altura inicial
 
             // Função para definir a altura do header como uma variável CSS.
             // Executada apenas no carregamento e redimensionamento da página.
             function updateHeaderHeight() {
-                const h = header ? header.offsetHeight : 120;
-                document.documentElement.style.setProperty('--header-height', `${h}px`);
+                if (header) {
+                    initialHeaderHeight = header.offsetHeight;
+                    document.documentElement.style.setProperty('--header-height', `${initialHeaderHeight}px`);
+                }
             }
             
             // Função para gerenciar a classe 'sticky' no header com base na rolagem.
             function stickyHeader() {
-                // A altura do cabeçalho original é usada para determinar o ponto de rolagem
-                // onde o cabeçalho "gruda".
-                const headerHeightToStick = header.offsetHeight;
-                if (window.pageYOffset > headerHeightToStick) {
+                if (window.pageYOffset > initialHeaderHeight) {
                     header.classList.add("sticky");
-                    document.body.style.paddingTop = headerHeightToStick + 'px'; // Adiciona preenchimento para evitar que o conteúdo pule
+                    document.body.style.paddingTop = initialHeaderHeight + 'px'; // Adiciona preenchimento para evitar que o conteúdo pule
                 } else {
                     header.classList.remove("sticky");
                     document.body.style.paddingTop = '0';
                 }
             }
             
-            // Corrige o "bug" da pane no header.
-            // updateHeaderHeight() é chamado apenas ao carregar e redimensionar.
-            // stickyHeader() é chamado apenas ao rolar a página.
-            window.addEventListener('load', updateHeaderHeight);
+            // CORREÇÃO 1: Evita o loop de recálculo no JS, chamando updateHeaderHeight apenas no início.
+            updateHeaderHeight();
             window.addEventListener('resize', updateHeaderHeight);
             window.addEventListener('scroll', stickyHeader, { passive: true });
             
-            // Garante que a altura do header seja definida no início
-            updateHeaderHeight();
             stickyHeader();
 
 
