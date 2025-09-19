@@ -312,6 +312,9 @@
                 font-size: 24px;
             }
         }
+
+        /* Pequena regra para as bandeiras inseridas pelo script */
+        .emoji-flag { width:20px; height:auto; vertical-align:middle; margin-left:4px; }
     </style>
 </head>
 <body>
@@ -330,7 +333,7 @@
         </div>
         <div class="mySlides">
             <img src="https://picsum.photos/1200/450?random=2" alt="Imagem 2">
-            <div class="text">Atendimento individualizado para adultos, estudantes e online</div>
+            <div class="text">Atendimento individualizado para adultos</div>
         </div>
         <div class="mySlides">
             <img src="https://picsum.photos/1200/450?random=3" alt="Imagem 3">
@@ -348,8 +351,13 @@
         <h2>Sobre Mim</h2>
         <div class="section-sobre-content">
             <div class="section-sobre-text">
-                <p>Olá! Sou a Kassiane Lins, psicóloga formada pela UNIMA. Meu trabalho é oferecer um **espaço seguro e acolhedor**, onde você pode se sentir à vontade para explorar suas emoções e desafios sem julgamentos. Acredito que a psicoterapia é uma jornada de autoconhecimento e coragem, e estou aqui para caminhar ao seu lado em cada passo.</p>
-                <p>Com uma abordagem focada em suas necessidades individuais, busco te ajudar a compreender e a lidar de forma mais eficaz com o que gera sofrimento, apoiando seu desenvolvimento pessoal e bem-estar emocional.</p>
+                <p>Oi, que bom te ter aqui! </p>
+                <p>Deixa eu me apresentar para que você me conheça um pouquinho melhor: </p>
+                <p>Eu tenho 27 anos, sou de Maceió - Alagoas, formada em Psicologia pelo Centro Universitário de Maceió (2021), com capacitação em Saúde Mental pela FAVENI e atualmente pós-graduanda em Psicologia Clínica pela PUC-RS. </p>
+                <p>Amo estudar Psicanálise e ler, desde romances a poesias. Também amo ouvir jazz e o mar. Estar na natureza nos ajuda a nos conectar com nós mesmos, não é poético? </p>
+                <p>Já morei por um tempo na Argentina e trago comigo uma alma viajante, apaixonada por conhecer novas culturas e lugares. </p>
+                <p>Meus atendimentos acontecem apenas on-line para qualquer lugar do Brasil e do mundo. Ah, em português e en español. 🇧🇷🇪🇸</p>
+                <p>Vamos começar? Mas antes, leia um pouquinho sobre a minha abordagem, minha linha teórica e o meu trabalho clínico. ⤵️</p>
             </div>
             <div class="section-sobre-image">
                 <img src="imagens/kassi-perfil.jpeg" alt="Perfil de Kassiane Lins" width="250" height="300" class="profile-img"> 
@@ -358,11 +366,11 @@
     </section>
 
     <section id="abordagem">
-        <h2>Minha Abordagem</h2>
+    <h2>Minha Abordagem</h2>
         <div class="section-content-centered">
-            <p>Sou psicóloga formada pelo Centro Universitário de Maceió (2021), com capacitação em Saúde Mental pela FAVENI e atualmente pós-graduanda em Psicologia Clínica pela PUC-RS. Minha prática, fundamentada na Psicanálise, vem sendo construída desde os estágios finais da graduação e segue em constante aprofundamento.</p>
-            <p>Dedico-me ao atendimento clínico de adultos, oferecendo um espaço de escuta atenta e acolhedora ao sofrimento psíquico em seus diferentes contextos. Acredito que nenhum sofrimento é pequeno, grave ou difícil demais para não ser ouvido. Cada sujeito traz consigo uma história única, que merece atenção e cuidado, e é nesse espaço que procuro caminhar junto a ele, respeitando sua singularidade.</p>
-            <p>Entendo o processo terapêutico como uma oportunidade de reflexão, transformação e autoconhecimento, possibilitando a cada sujeito ressignificar suas vivências e encontrar novos caminhos para viver com mais equilíbrio e sentido.</p>
+            <p>Dedico-me ao atendimento clínico de adultos, oferecendo um espaço de escuta que considera a singularidade de cada sujeito. Entendo que todo sofrimento merece ser acolhido e que, muitas vezes, é nos detalhes do que se diz que se revelam sentidos importantes sobre a vida de cada um.</p>
+            <p>A psicanálise parte da ideia de que o inconsciente se manifesta na fala, nos sintomas e nos impasses que encontramos ao longo da vida. Meu trabalho é acompanhar o sujeito nesse percurso, possibilitando que encontre novas formas de se implicar em sua história e de lidar com aquilo que o faz sofrer.</p>
+            <p>Com essa escuta, o processo analítico pode favorecer transformações, abertura de novos caminhos e um viver mais próximo do que faz sentido para cada sujeito.</p>
         </div>
     </section>
 
@@ -370,9 +378,9 @@
         <h2>Serviços</h2>
         <div class="section-content-centered">
             <ul>
-                <li><i class="fas fa-check-circle"></i> Sessões online</li>
+                <li><i class="fas fa-check-circle"></i> Sessões Online</li>
+                <li><i class="fas fa-check-circle"></i> Aconselhamento Psicológico</li>
                 <li><i class="fas fa-check-circle"></i> Psicoterapia individual para adultos</li>
-                <li><i class="fas fa-check-circle"></i> Orientação para estudantes universitários</li>
             </ul>
         </div>
     </section>
@@ -383,7 +391,7 @@
             <ul>
                 <li><i class="fas fa-envelope"></i> Email: kassianelinspsi@gmail.com </li>
                 <li><i class="fab fa-whatsapp"></i> WhatsApp: 82 9907-9493 </li>
-                <li><i class="fab fa-instagram"></i> Instagram: <a href="https://www.google.com" target="_blank">kassianelinspsi</a> </li>
+                <li><i class="fab fa-instagram"></i> Instagram: <a href="https://www.instagram.com/kassianelinspsi/" target="_blank">kassianelinspsi</a> </li>
             </ul>
             <img src="imagens/qrcode.jpg" alt="QR CODE do WhatsApp" width="150" style="margin-top: 20px;">
         </div>
@@ -435,6 +443,86 @@
             slideIndex = n-1;
             showSlides();
         }
+
+        /* ---------------------------
+           Substituição segura de emojis
+           (não recria o DOM nem remove listeners)
+           --------------------------- */
+        (function() {
+            const flagEmojis = {
+                "🇧🇷": "https://flagcdn.com/w20/br.png",
+                "🇪🇸": "https://flagcdn.com/w20/es.png",
+                "🇦🇷": "https://flagcdn.com/w20/ar.png",
+                "🇵🇹": "https://flagcdn.com/w20/pt.png"
+            };
+
+            // Tags que queremos ignorar durante a varredura
+            const IGNORED_TAGS = new Set(['SCRIPT','STYLE','TEXTAREA','CODE','PRE','NOSCRIPT','AUDIO','VIDEO','CANVAS','SVG','IMG','A']);
+
+            function escapeForRegex(s){
+                return s.replace(/[.*+?^${}()|[\]\\]/g,'\\$&');
+            }
+
+            const emojisPattern = Object.keys(flagEmojis).map(escapeForRegex).join('|');
+            if (!emojisPattern) return;
+            const emojisRegex = new RegExp(emojisPattern, 'g');
+
+            function replaceEmojisInTextNodes() {
+                const walker = document.createTreeWalker(document.body, NodeFilter.SHOW_TEXT, {
+                    acceptNode: function(node) {
+                        const parent = node.parentNode;
+                        if (!parent) return NodeFilter.FILTER_REJECT;
+                        if (IGNORED_TAGS.has(parent.nodeName)) return NodeFilter.FILTER_REJECT;
+                        if (!node.nodeValue || !node.nodeValue.trim()) return NodeFilter.FILTER_REJECT;
+                        return NodeFilter.FILTER_ACCEPT;
+                    }
+                }, false);
+
+                const nodes = [];
+                while (walker.nextNode()) nodes.push(walker.currentNode);
+
+                nodes.forEach(node => {
+                    const text = node.nodeValue;
+                    if (!emojisRegex.test(text)) return;
+                    emojisRegex.lastIndex = 0;
+                    const frag = document.createDocumentFragment();
+                    let lastIndex = 0;
+                    let match;
+                    while ((match = emojisRegex.exec(text)) !== null) {
+                        const idx = match.index;
+                        if (idx > lastIndex) {
+                            frag.appendChild(document.createTextNode(text.slice(lastIndex, idx)));
+                        }
+                        const emoji = match[0];
+                        const img = document.createElement('img');
+                        img.src = flagEmojis[emoji];
+                        img.alt = emoji;
+                        img.className = 'emoji-flag';
+                        // estilos inline mínimos para compatibilidade (a classe também controla)
+                        img.style.width = '20px';
+                        img.style.height = 'auto';
+                        img.style.verticalAlign = 'middle';
+                        img.style.marginLeft = '4px';
+                        frag.appendChild(img);
+                        lastIndex = emojisRegex.lastIndex;
+                    }
+                    if (lastIndex < text.length) {
+                        frag.appendChild(document.createTextNode(text.slice(lastIndex)));
+                    }
+                    node.parentNode.replaceChild(frag, node);
+                });
+            }
+
+            if (document.readyState === 'loading') {
+                document.addEventListener('DOMContentLoaded', replaceEmojisInTextNodes);
+            } else {
+                // caso o script seja inserido após DOMContentLoaded
+                replaceEmojisInTextNodes();
+            }
+        })();
+        /* ---------------------------
+           Fim: Substituição segura de emojis
+           --------------------------- */
     </script>
 </body>
 </html>
