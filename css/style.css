@@ -1,0 +1,565 @@
+:root {
+    /* Paleta de cores */
+    --cor-primaria: #a3d2ca;
+    --cor-secundaria: #f7fff7;
+    --cor-fundo: #fafafa;
+    --cor-texto: #333;
+    --cor-titulo: #5eaaa8;
+    --cor-hover: #4b9e9d;
+    --cor-interna: #ffffff;
+    --cor-sombra: rgba(0, 0, 0, 0.05);
+
+    /* Altura fixa do header sticky */
+    --sticky-header-height: 70px;
+}
+
+body {
+    font-family: 'Poppins', sans-serif;
+    background-color: var(--cor-fundo);
+    color: var(--cor-texto);
+    line-height: 1.8;
+    margin: 0;
+    padding: 0;
+    scroll-behavior: smooth;
+}
+
+.header-placeholder {
+    height: 0;
+    visibility: hidden;
+    pointer-events: none;
+    transition: height 0.3s ease;
+}
+
+.header-placeholder.active {
+    height: var(--sticky-header-height);
+}
+
+/* --- Estilos do Header --- */
+.header {
+    text-align: center;
+    padding: 40px 20px 20px;
+    background-color: var(--cor-secundaria);
+    position: relative;
+    transition: background-color 0.3s ease, padding 0.3s ease, box-shadow 0.3s ease, transform 0.3s ease;
+    z-index: 1000;
+    max-width: 1000px;
+    margin: 0 auto;
+}
+
+.header.sticky {
+    position: fixed;
+    top: 0;
+    left: 0;
+    right: 0;
+    width: 100%;
+    padding: 12px 20px;
+    background-color: rgba(75,158,157,0.95);
+    z-index: 1100;
+    box-shadow: 0 6px 18px rgba(0,0,0,0.12);
+    backdrop-filter: blur(6px);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    flex-wrap: wrap;
+    max-width: none;
+    margin: 0;
+    height: var(--sticky-header-height);
+}
+
+.header .logo {
+    margin-bottom: 15px;
+    transition: width 0.3s ease, height 0.3s ease, margin 0.3s ease;
+}
+
+.header.sticky .logo {
+    width: 72px;
+    height: 72px;
+    margin-bottom: 0;
+}
+
+.header h1 {
+    font-family: 'Playfair Display', serif;
+    font-size: 36px;
+    font-weight: 700;
+    color: var(--cor-titulo);
+    margin: 6px 0;
+    transition: font-size 0.3s ease, color 0.3s ease;
+}
+
+.header p {
+    font-size: 16px;
+    font-weight: 400;
+    color: var(--cor-texto);
+    margin: 0;
+    transition: opacity 0.3s ease;
+}
+
+.header.sticky h1, .header.sticky p {
+    color: var(--cor-interna);
+}
+
+.header.sticky h1 {
+    font-size: 20px;
+    margin-left: 10px;
+}
+
+.header.sticky p {
+    display: none;
+    opacity: 0;
+}
+
+.header .cta-button {
+    display: none;
+}
+
+.header.sticky .cta-button {
+    display: inline-block;
+    margin-left: 12px;
+    padding: 4px 8px;
+    background-color: var(--cor-primaria);
+    color: var(--cor-interna);
+    font-size: 15px;
+    border-radius: 10px;
+    text-decoration: none;
+    transition: background-color 0.3s ease, transform 0.2s ease;
+}
+
+.header.sticky .cta-button:hover {
+    transform: translateY(-2px);
+    background-color: var(--cor-hover);
+}
+
+.header.sticky .logo, .header.sticky h1, .header.sticky .cta-button {
+    vertical-align: middle;
+}
+
+/* --- Estilos do Slideshow --- */
+.slideshow-container {
+    width: 100%;
+    position: relative;
+    margin: 0 auto;
+    overflow: hidden;
+    max-width: 1200px;
+}
+
+.mySlides {
+    display: none;
+    position: relative;
+}
+
+.mySlides img {
+    width: 100%;
+    height: 450px;
+    object-fit: cover;
+    display: block;
+    transition: transform 0.6s ease;
+}
+
+.mySlides.active img {
+    transform: scale(1.02);
+}
+
+.text {
+    position: absolute;
+    bottom: 20%;
+    left: 50%;
+    transform: translateX(-50%);
+    color: white;
+    font-size: 28px;
+    font-family: 'Playfair Display', serif;
+    text-shadow: 0px 2px 8px rgba(0,0,0,0.7);
+    text-align: center;
+    max-width: 90%;
+    line-height: 1.4;
+}
+
+.dot-container {
+    text-align: center;
+    padding: 15px;
+    background: var(--cor-fundo);
+}
+
+.dot {
+    cursor: pointer;
+    height: 12px;
+    width: 12px;
+    margin: 0 4px;
+    background-color: #bbb;
+    border-radius: 50%;
+    display: inline-block;
+    transition: background-color 0.6s ease;
+}
+
+.active, .dot:hover {
+    background-color: var(--cor-primaria);
+}
+
+/* --- Estilos das Seções --- */
+section {
+    max-width: 900px;
+    margin: 40px auto;
+    padding: 40px 30px;
+    background: linear-gradient(180deg, rgba(255,255,255,0.8), rgba(255,255,255,0.6));
+    border-radius: 12px;
+    box-shadow: 0 8px 24px rgba(0,0,0,0.04);
+}
+
+section h2 {
+    font-family: 'Playfair Display', serif;
+    font-size: 28px;
+    font-weight: 700;
+    color: var(--cor-titulo);
+    margin: 0 0 18px 0;
+    padding: 10px 12px;
+    border-radius: 8px;
+    z-index: 900;
+    background: linear-gradient(180deg, rgba(247,255,247,0.95), rgba(247,255,247,0.9));
+    backdrop-filter: blur(4px);
+    box-shadow: 0 6px 18px rgba(0,0,0,0.06);
+    border-bottom: 2px solid var(--cor-primaria);
+}
+
+/* Apenas os títulos das seções 'Sobre Mim' e 'Minha Abordagem' terão o efeito de sticky */
+#sobre h2, #abordagem h2 {
+    position: sticky;
+    top: var(--sticky-header-height);
+}
+
+.section-sobre-content {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    text-align: center;
+    gap: 20px;
+}
+
+.section-sobre-text {
+    flex: 1;
+}
+
+.section-sobre-image {
+    text-align: center;
+}
+
+@media (min-width: 768px) {
+    .section-sobre-content {
+        flex-direction: row;
+        text-align: left;
+    }
+    .section-sobre-image {
+        order: 2;
+        padding-left: 30px;
+        position: static;
+        align-self: auto;
+    }
+    .section-sobre-text {
+        order: 1;
+    }
+}
+
+.profile-img {
+    border-radius: 12px;
+    border: 3px solid var(--cor-primaria);
+    box-shadow: 0 8px 18px var(--cor-sombra);
+    max-width: 100%;
+    height: auto;
+}
+
+.section-content-centered {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    text-align: center;
+}
+
+.section-content-centered p {
+    max-width: 700px;
+}
+
+/* Oculta o texto para a animação de digitação */
+.typing-text {
+    opacity: 0;
+    transition: opacity 1s ease-in; /* Ajustado para uma transição mais suave */
+    position: relative;
+}
+
+.typing-text.is-visible {
+    opacity: 1;
+}
+
+/* Remove o efeito de fumaça, pois causa o bug */
+.typing-text span {
+    display: inline-block;
+}
+
+/* NEW: container que remove o whitespace padrão entre imgs inline */
+.flags {
+    display: inline-flex;
+    gap: 0; /* sem espaço entre as bandeiras */
+    align-items: center;
+    vertical-align: middle;
+}
+
+/* Classe para inserir imagens de bandeira no tamanho de emoji */
+.flag-image {
+    /* use altura fixa (pixel) para consistência cross-device */
+    height: 18px;
+    width: auto;
+    vertical-align: middle;
+    margin: 0; /* removido o espaçamento lateral para colar as bandeiras */
+    border-radius: 2px;
+    box-shadow: 0 1px 3px rgba(0,0,0,0.08);
+    border: 0.5px solid rgba(0,0,0,0.06);
+    display: inline-block;
+    object-fit: contain;
+}
+
+/* Fallback emoji quando a imagem não carregar */
+.flag-emoji-fallback {
+    font-size: 18px;
+    line-height: 1;
+    vertical-align: middle;
+    margin: 0; /* alinhamento sem espaços */
+    display: inline-block;
+}
+
+.cta-button {
+    display: inline-block;
+    margin-top: 20px;
+    padding: 12px 24px;
+    background-color: var(--cor-primaria);
+    color: var(--cor-interna);
+    text-decoration: none;
+    border-radius: 8px;
+    font-weight: 600;
+    font-size: 18px;
+    transition: background-color 0.3s ease, transform 0.18s ease;
+}
+
+.cta-button:hover {
+    background-color: var(--cor-hover);
+    transform: translateY(-3px);
+}
+
+ul {
+    list-style: none;
+    padding: 0;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    text-align: center;
+}
+
+ul li {
+    margin-bottom: 15px;
+    font-size: 17px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+/* Estilos e animação para o ícone de check-circle */
+ul li i {
+    margin-right: 10px;
+    color: var(--cor-primaria);
+    vertical-align: middle;
+    animation: pulse-check 2s infinite;
+}
+
+@keyframes pulse-check {
+    0% { transform: scale(1); color: var(--cor-primaria); }
+    50% { transform: scale(1.1); color: var(--cor-hover); }
+    100% { transform: scale(1); color: var(--cor-primaria); }
+}
+
+/* --- Estilos do Footer --- */
+footer {
+    text-align: center;
+    padding: 12px;
+    background-color: var(--cor-primaria);
+    color: var(--cor-texto);
+    box-shadow: 0 -2px 8px var(--cor-sombra);
+    position: fixed;
+    bottom: 0;
+    width: 100%;
+    z-index: 999;
+}
+
+footer p {
+    font-size: 14px;
+    margin: 0;
+}
+
+/* --- Estilos dos botões flutuantes --- */
+.floating-buttons {
+    position: fixed;
+    right: 20px;
+    bottom: 80px; /* Posiciona os botões acima do rodapé */
+    display: flex;
+    flex-direction: column;
+    gap: 14px;
+    z-index: 2147483646;
+    pointer-events: auto;
+}
+
+.floating-buttons a {
+    width: 56px;
+    height: 56px;
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    border-radius: 50%;
+    background: var(--cor-primaria);
+    color: var(--cor-interna);
+    text-decoration: none;
+    font-size: 22px;
+    box-shadow: 0 10px 30px rgba(0,0,0,0.12);
+    transition: transform .18s ease, box-shadow .18s ease;
+}
+.floating-buttons a:hover {
+    transform: translateY(-4px) scale(1.06);
+    box-shadow: 0 14px 40px rgba(0,0,0,0.18);
+}
+
+/* Animação para o botão do WhatsApp */
+.floating-buttons a.whatsapp {
+    animation: pulse-red 2.5s ease-out infinite;
+}
+
+@keyframes pulse-red {
+    0% { transform: scale(1); box-shadow: 0 0 0 0 rgba(255,0,0,0.4); }
+    50% { transform: scale(1.06); box-shadow: 0 0 0 12px rgba(255,0,0,0); }
+    100% { transform: scale(1); box-shadow: 0 0 0 0 rgba(255,0,0,0); }
+}
+
+/* Nova regra para o link do Instagram */
+#contato ul li a {
+    color: var(--cor-primaria); /* Usa a cor ciano definida */
+    text-decoration: none;
+    font-weight: 500;
+}
+
+/* Ajustes para telas bem pequenas */
+@media (max-width: 480px) {
+    section {
+        padding: 20px;
+        margin: 20px 12px;
+    }
+    .flag-image {
+        height: 16px;
+        margin: 0;
+    }
+    .flag-emoji-fallback {
+        font-size: 16px;
+        margin: 0;
+    }
+}
+
+/* --- Responsividade --- */
+@media (min-width: 768px) {
+    .section-sobre-content {
+        flex-direction: row;
+        text-align: left;
+    }
+    .section-sobre-image {
+        order: 2;
+        padding-left: 30px;
+        position: static;
+        align-self: auto;
+    }
+    .section-sobre-text {
+        order: 1;
+    }
+    .header.sticky h1 {
+        font-size: 24px;
+    }
+    .header.sticky .logo {
+        width: 50px;
+        height: 50px;
+    }
+    /* Estilos da seção de Contato */
+    #contato ul {
+        /* Centraliza a lista inteira, mas os itens internos se alinham à esquerda */
+        align-items: flex-start;
+        max-width: 400px; /* Limita a largura para centralizar em telas maiores */
+        margin: 0 auto;
+    }
+    #contato ul li {
+        /* Garante que o ícone e o texto permaneçam alinhados no início da linha */
+        justify-content: flex-start;
+        text-align: left; /* Alinha o texto à esquerda */
+        width: 100%; /* Ocupa a largura total para alinhar corretamente */
+        max-width: 300px; /* Evita que a lista fique muito larga em telas grandes */
+    }
+    #contato ul li i {
+        margin-right: 12px;
+    }
+}
+
+@media (max-width: 767px) {
+    .header h1 {
+        font-size: 28px;
+    }
+    .header p {
+        font-size: 16px;
+    }
+    section {
+        margin: 24px 15px;
+        padding: 24px;
+    }
+    section h2 {
+        font-size: 20px;
+    }
+    #sobre h2, #abordagem h2 {
+        top: calc(var(--sticky-header-height) + 8px);
+    }
+    .floating-buttons {
+        bottom: 80px;
+        top: auto;
+    }
+    .floating-buttons a {
+        width: 48px;
+        height: 48px;
+        font-size: 20px;
+    }
+    .header.sticky {
+        display: flex;
+        flex-direction: row;
+        align-items: center;
+        justify-content: flex-start;
+        height: auto;
+        padding: 8px 15px;
+    }
+    .header.sticky .logo {
+        display: block; /* Garante que o logo apareça no cabeçalho fixo */
+        width: 50px; /* Reduz o tamanho do logo */
+        height: 50px;
+        margin-right: 10px;
+    }
+    .header.sticky h1 {
+        font-size: 18px;
+        margin: 0;
+        text-align: left;
+    }
+    /* Oculta o botão 'Vamos Conversar' no cabeçalho em telas menores */
+    .header.sticky .cta-button {
+        display: none;
+    }
+    /* Estilos da seção de Contato */
+    #contato ul {
+        /* Centraliza a lista inteira, mas os itens internos se alinham à esquerda */
+        align-items: flex-start;
+        max-width: 400px; /* Limita a largura para centralizar em telas maiores */
+        margin: 0 auto;
+    }
+    #contato ul li {
+        /* Garante que o ícone e o texto permaneçam alinhados no início da linha */
+        justify-content: flex-start;
+        text-align: left; /* Alinha o texto à esquerda */
+        width: 100%; /* Ocupa a largura total para alinhar corretamente */
+        max-width: 300px; /* Evita que a lista fique muito larga em telas grandes */
+    }
+    #contato ul li i {
+        margin-right: 12px;
+    }
+}
