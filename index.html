@@ -430,13 +430,21 @@
                 height: 48px;
                 font-size: 20px;
             }
+            .header.sticky {
+                justify-content: space-between; /* Novo: distribui o espaço */
+                gap: 8px; /* Novo: adiciona espaço entre os itens */
+            }
             .header.sticky h1 {
                 font-size: 18px;
                 margin-left: 8px;
+                flex-grow: 1; /* Novo: permite que o título ocupe o espaço restante */
             }
             .header.sticky .logo {
                 width: 45px;
                 height: 45px;
+            }
+            .header.sticky .cta-button {
+                margin-left: 0; /* Novo: remove o margin-left para o layout mobile */
             }
         }
         
