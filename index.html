@@ -359,7 +359,7 @@
         .floating-buttons {
             position: fixed;
             right: 20px;
-            bottom: calc(12px + 56px);
+            bottom: 80px; /* Ajuste para ter espaço do footer */
             display: flex;
             flex-direction: column;
             gap: 14px;
@@ -436,6 +436,10 @@
             #sobre h2, #abordagem h2 {
                 top: calc(var(--sticky-header-height) + 8px);
             }
+            .floating-buttons {
+                top: calc(var(--sticky-header-height) + 20px);
+                bottom: auto; /* Remove o posicionamento do rodapé para o ajuste superior */
+            }
             .floating-buttons a {
                 width: 48px;
                 height: 48px;
@@ -450,7 +454,10 @@
                 padding: 8px 15px;
             }
             .header.sticky .logo {
-                display: none;
+                display: block; /* Mostra o logo no cabeçalho fixo */
+                width: 50px; /* Reduz o tamanho do logo */
+                height: 50px;
+                margin-right: 10px;
             }
             .header.sticky h1 {
                 font-size: 18px;
