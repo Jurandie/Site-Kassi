@@ -11,7 +11,7 @@
     
     <style>
         :root {
-            /* Paleta de cores do primeiro código */
+            /* Paleta de cores do seu código */
             --cor-primaria: #a3d2ca;
             --cor-secundaria: #f7fff7;
             --cor-fundo: #fafafa;
@@ -20,6 +20,9 @@
             --cor-hover: #4b9e9d;
             --cor-interna: #ffffff;
             --cor-sombra: rgba(0, 0, 0, 0.05);
+
+            /* Variável dinâmica para altura do header (atualizada por JS) */
+            --header-height: 120px;
         }
 
         body {
@@ -38,27 +41,31 @@
             padding: 40px 20px 20px;
             background-color: var(--cor-secundaria);
             position: relative;
-            transition: background-color 0.3s ease, padding 0.3s ease;
+            transition: background-color 0.3s ease, padding 0.3s ease, box-shadow 0.3s ease;
+            -webkit-backdrop-filter: none;
+            backdrop-filter: none;
         }
 
         .header.sticky {
             position: fixed;
             top: 0;
             width: 100%;
-            padding: 15px 20px;
-            background-color: var(--cor-hover);
-            z-index: 1000;
-            box-shadow: 0 2px 5px var(--cor-sombra);
+            padding: 12px 20px;
+            background-color: rgba(75,158,157,0.95); /* var(--cor-hover) com leve transparência */
+            z-index: 1100;
+            box-shadow: 0 6px 18px rgba(0,0,0,0.12);
+            -webkit-backdrop-filter: blur(6px);
+            backdrop-filter: blur(6px);
         }
 
         .header .logo {
             margin-bottom: 15px;
-            transition: width 0.3s ease, height 0.3s ease;
+            transition: width 0.3s ease, height 0.3s ease, margin 0.3s ease;
         }
 
         .header.sticky .logo {
-            width: 80px;
-            height: 80px;
+            width: 72px;
+            height: 72px;
             margin-bottom: 0;
         }
         
@@ -67,15 +74,15 @@
             font-size: 36px;
             font-weight: 700;
             color: var(--cor-titulo);
-            margin: 0;
+            margin: 6px 0;
             transition: font-size 0.3s ease, color 0.3s ease;
         }
 
         .header p {
-            font-size: 18px;
+            font-size: 16px;
             font-weight: 400;
             color: var(--cor-texto);
-            margin-top: 5px;
+            margin: 0;
             transition: opacity 0.3s ease;
         }
         
@@ -84,7 +91,7 @@
         }
         
         .header.sticky h1 {
-            font-size: 24px;
+            font-size: 20px;
         }
 
         .header.sticky p {
@@ -98,12 +105,19 @@
 
         .header.sticky .cta-button {
             display: inline-block;
-            margin-top: 0;
+            margin-left: 12px;
             padding: 8px 16px;
             background-color: var(--cor-primaria);
             color: var(--cor-interna);
-            font-size: 16px;
-            transition: background-color 0.3s ease;
+            font-size: 15px;
+            border-radius: 10px;
+            text-decoration: none;
+            transition: background-color 0.3s ease, transform 0.2s ease;
+        }
+
+        .header.sticky .cta-button:hover {
+            transform: translateY(-2px);
+            background-color: var(--cor-hover);
         }
 
         .header.sticky .logo, .header.sticky h1, .header.sticky .cta-button {
@@ -129,6 +143,11 @@
             height: 450px;
             object-fit: cover;
             display: block;
+            transition: transform 0.6s ease;
+        }
+
+        .mySlides.active img {
+            transform: scale(1.02);
         }
 
         .text {
@@ -139,7 +158,7 @@
             color: white;
             font-size: 28px;
             font-family: 'Playfair Display', serif;
-            text-shadow: 0px 2px 5px rgba(0,0,0,0.7);
+            text-shadow: 0px 2px 8px rgba(0,0,0,0.7);
             text-align: center;
             max-width: 90%;
             line-height: 1.4;
@@ -170,22 +189,39 @@
         section {
             max-width: 900px;
             margin: 40px auto;
-            padding: 40px 30px; /* Padronização do espaçamento interno */
+            padding: 40px 30px;
+            background: linear-gradient(180deg, rgba(255,255,255,0.8), rgba(255,255,255,0.6));
+            border-radius: 12px;
+            box-shadow: 0 8px 24px rgba(0,0,0,0.04);
         }
         
         #sobre {
-            border-bottom: 2px solid var(--cor-primaria);
+            border-bottom: 2px solid transparent;
         }
 
+        /* --- Sticky H2: agora é sticky e respeita altura do header --- */
         section h2 {
             font-family: 'Playfair Display', serif;
-            font-size: 32px;
+            font-size: 28px;
             font-weight: 700;
             color: var(--cor-titulo);
-            margin-bottom: 20px;
+            margin: 0 0 18px 0;
+            padding: 10px 12px;
+            border-radius: 8px;
+            /* Sticky behavior */
+            position: sticky;
+            top: calc(var(--header-height) + 12px);
+            z-index: 900;
+            background: linear-gradient(180deg, rgba(247,255,247,0.95), rgba(247,255,247,0.9));
+            backdrop-filter: blur(4px);
+            box-shadow: 0 6px 18px rgba(0,0,0,0.06);
             border-bottom: 2px solid var(--cor-primaria);
-            padding-bottom: 10px;
-            text-align: center;
+            transition: transform 0.18s ease;
+        }
+
+        /* Quando o header estiver próximo, reduzir um pouco visual do h2 */
+        .header.sticky + section h2 {
+            transform: translateY(-2px);
         }
 
         .section-sobre-content {
@@ -194,7 +230,6 @@
             align-items: center;
             text-align: center;
             gap: 20px;
-            /* Padding removido daqui, foi para a tag section */
         }
 
         .section-sobre-text {
@@ -202,19 +237,28 @@
             text-align: left;
         }
         
+        /* --- Sticky perfil (em telas maiores) --- */
         .section-sobre-image {
             text-align: center;
+        }
+
+        /* deixa a imagem 'presa' ao rolar no desktop */
+        @media (min-width: 768px) {
+            .section-sobre-image {
+                position: sticky;
+                top: calc(var(--header-height) + 28px);
+                align-self: flex-start;
+            }
         }
 
         .profile-img {
             border-radius: 12px;
             border: 3px solid var(--cor-primaria);
-            box-shadow: 0 4px 8px var(--cor-sombra);
+            box-shadow: 0 8px 18px var(--cor-sombra);
             max-width: 100%;
             height: auto;
         }
 
-        /* Melhoria para a abordagem e listas */
         .section-content-centered {
             display: flex;
             flex-direction: column;
@@ -222,11 +266,10 @@
         }
         
         .section-content-centered p {
-            max-width: 700px; /* Limita a largura do texto para melhor legibilidade */
+            max-width: 700px;
             text-align: center;
         }
 
-        /* Botão */
         .cta-button {
             display: inline-block;
             margin-top: 20px;
@@ -237,19 +280,19 @@
             border-radius: 8px;
             font-weight: 600;
             font-size: 18px;
-            transition: background-color 0.3s ease;
+            transition: background-color 0.3s ease, transform 0.18s ease;
         }
 
         .cta-button:hover {
             background-color: var(--cor-hover);
+            transform: translateY(-3px);
         }
 
-        /* Lista de Serviços e Contato */
         ul {
             list-style: none;
             padding: 0;
             display: inline-block;
-            text-align: left; /* Alinha o texto da lista à esquerda */
+            text-align: left;
         }
 
         ul li {
@@ -262,13 +305,13 @@
             color: var(--cor-primaria);
         }
 
-        /* --- Footer (agora fixo e menor) --- */
+        /* --- Footer (fixo) --- */
         footer {
             text-align: center;
             padding: 12px;
             background-color: var(--cor-primaria);
             color: var(--cor-texto);
-            box-shadow: 0 -2px 5px var(--cor-sombra);
+            box-shadow: 0 -2px 8px var(--cor-sombra);
             position: fixed;
             bottom: 0;
             width: 100%;
@@ -278,6 +321,39 @@
         footer p {
             font-size: 14px;
             margin: 0;
+        }
+
+        /* --- Floating Action Button (CTA fixo) --- */
+        .fab {
+            position: fixed;
+            right: 20px;
+            bottom: calc(12px + 56px); /* acima do footer */
+            background: linear-gradient(180deg, var(--cor-primaria), var(--cor-hover));
+            color: var(--cor-interna);
+            padding: 14px 18px;
+            border-radius: 50px;
+            box-shadow: 0 10px 30px rgba(0,0,0,0.15);
+            z-index: 1200;
+            display: flex;
+            gap: 10px;
+            align-items: center;
+            text-decoration: none;
+            font-weight: 600;
+            transition: transform 0.18s ease, box-shadow 0.2s ease;
+        }
+
+        .fab:hover {
+            transform: translateY(-4px);
+            box-shadow: 0 14px 40px rgba(0,0,0,0.2);
+        }
+
+        .fab .icon {
+            width: 24px;
+            height: 24px;
+            display: inline-flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 18px;
         }
 
         /* Responsividade */
@@ -305,11 +381,19 @@
                 font-size: 16px;
             }
             section {
-                margin: 30px 15px;
-                padding: 30px; /* Aumentei um pouco o padding para telas menores */
+                margin: 24px 15px;
+                padding: 24px;
             }
             section h2 {
-                font-size: 24px;
+                font-size: 20px;
+                top: calc(var(--header-height) + 8px);
+            }
+
+            /* FAB menor em mobile */
+            .fab {
+                padding: 12px 14px;
+                border-radius: 40px;
+                bottom: calc(12px + 56px);
             }
         }
 
@@ -337,7 +421,7 @@
         </div>
         <div class="mySlides">
             <img src="https://picsum.photos/1200/450?random=3" alt="Imagem 3">
-            <div class="text">“Na fala, cada um pode encontrar novos caminhos para viver.</div>
+            <div class="text">Na fala, cada um pode encontrar novos caminhos para viver.</div>
         </div>
     </div>
 
@@ -367,7 +451,7 @@
     </section>
 
     <section id="abordagem">
-    <h2>Minha Abordagem</h2>
+        <h2>Minha Abordagem</h2>
         <div class="section-content-centered">
             <p>Dedico-me ao atendimento clínico de adultos, oferecendo um espaço de escuta que considera a singularidade de cada sujeito. Entendo que todo sofrimento merece ser acolhido e que, muitas vezes, é nos detalhes do que se diz que se revelam sentidos importantes sobre a vida de cada um.</p>
             <p>A psicanálise parte da ideia de que o inconsciente se manifesta na fala, nos sintomas e nos impasses que encontramos ao longo da vida. Meu trabalho é acompanhar o sujeito nesse percurso, possibilitando que encontre novas formas de se implicar em sua história e de lidar com aquilo que o faz sofrer.</p>
@@ -398,28 +482,47 @@
         </div>
     </section>
 
+    <!-- Floating Action Button (CTA) -->
+    <a class="fab" href="https://wa.me/message/DN7GJ7W4BKA2E1" target="_blank" aria-label="WhatsApp">
+        <span class="icon"><i class="fab fa-whatsapp"></i></span>
+        <span>Fale comigo</span>
+    </a>
+
     <footer>
         <p>"Cuidar de si é acolher o que insiste em ser dito."</p>
     </footer>
 
     <script>
-        // Efeito "Sticky" para o cabeçalho
-        window.onscroll = function() {
-            stickyHeader();
-        };
-
-        var header = document.getElementById("header");
-        var sticky = header.offsetTop;
-
-        function stickyHeader() {
-            if (window.pageYOffset > 50) { 
-                header.classList.add("sticky");
-            } else {
-                header.classList.remove("sticky");
+        // Atualiza a variável CSS --header-height conforme o header muda (útil para elementos sticky)
+        (function() {
+            const header = document.getElementById('header');
+            function updateHeaderHeight() {
+                // pega a altura atual do header (inclui paddings)
+                const h = header.offsetHeight;
+                document.documentElement.style.setProperty('--header-height', h + 'px');
             }
-        }
 
-        // SLIDE
+            // sticky do header
+            function stickyHeader() {
+                if (window.pageYOffset > 50) {
+                    header.classList.add("sticky");
+                } else {
+                    header.classList.remove("sticky");
+                }
+                // atualiza sempre que toggla
+                updateHeaderHeight();
+            }
+
+            // atualizar no load e resize também
+            window.addEventListener('scroll', stickyHeader, {passive: true});
+            window.addEventListener('resize', updateHeaderHeight);
+            document.addEventListener('DOMContentLoaded', function() {
+                updateHeaderHeight();
+                stickyHeader();
+            });
+        })();
+
+        // SLIDE (ligue ao visual sticky - pequenas melhorias)
         let slideIndex = 0;
         showSlides();
 
@@ -429,13 +532,15 @@
             let dots = document.getElementsByClassName("dot");
             for (i = 0; i < slides.length; i++) {
                 slides[i].style.display = "none";  
+                slides[i].classList.remove('active');
             }
             slideIndex++;
             if (slideIndex > slides.length) {slideIndex = 1}      
             for (i = 0; i < dots.length; i++) {
                 dots[i].className = dots[i].className.replace(" active", "");
             }
-            slides[slideIndex-1].style.display = "block";  
+            slides[slideIndex-1].style.display = "block";
+            slides[slideIndex-1].classList.add('active');
             dots[slideIndex-1].className += " active";
             setTimeout(showSlides, 5000); // troca a cada 5 segundos
         }
@@ -447,7 +552,6 @@
 
         /* ---------------------------
            Substituição segura de emojis
-           (não recria o DOM nem remove listeners)
            --------------------------- */
         (function() {
             const flagEmojis = {
@@ -456,14 +560,8 @@
                 "🇦🇷": "https://flagcdn.com/w20/ar.png",
                 "🇵🇹": "https://flagcdn.com/w20/pt.png"
             };
-
-            // Tags que queremos ignorar durante a varredura
             const IGNORED_TAGS = new Set(['SCRIPT','STYLE','TEXTAREA','CODE','PRE','NOSCRIPT','AUDIO','VIDEO','CANVAS','SVG','IMG','A']);
-
-            function escapeForRegex(s){
-                return s.replace(/[.*+?^${}()|[\]\\]/g,'\\$&');
-            }
-
+            function escapeForRegex(s){ return s.replace(/[.*+?^${}()|[\]\\]/g,'\\$&'); }
             const emojisPattern = Object.keys(flagEmojis).map(escapeForRegex).join('|');
             if (!emojisPattern) return;
             const emojisRegex = new RegExp(emojisPattern, 'g');
@@ -499,7 +597,6 @@
                         img.src = flagEmojis[emoji];
                         img.alt = emoji;
                         img.className = 'emoji-flag';
-                        // estilos inline mínimos para compatibilidade (a classe também controla)
                         img.style.width = '20px';
                         img.style.height = 'auto';
                         img.style.verticalAlign = 'middle';
@@ -517,7 +614,6 @@
             if (document.readyState === 'loading') {
                 document.addEventListener('DOMContentLoaded', replaceEmojisInTextNodes);
             } else {
-                // caso o script seja inserido após DOMContentLoaded
                 replaceEmojisInTextNodes();
             }
         })();
